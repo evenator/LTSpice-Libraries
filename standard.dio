@@ -78,3 +78,4 @@
 .model 1N5369B D(IS=1.54e-17 N=1 XTI=1 Rs=.1 Cjo=10p TT=10n BV=51  IBV=25m NBV=35 Vpk=51 mfg=OnSemi type=Zener)
 .model W5AP-LZMZ-5K8L D(Is=3.5e-17 Rs=.25 N=3.12 Cjo=2.75n Iave=2 Vpk=5 mfg=Lumileds type=LED)
 .model 1N4735A D(IS = 1.803E-14 N = 1.167 BV = 6.2 IBV = 0.041 RS = 0.3264 CJO = 6.85E-11 VJ = 0.6947 M = 0.3439 FC = 0.5 type=Zener)
+
