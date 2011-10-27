@@ -1,0 +1,35 @@
+Version 4
+SymbolType BLOCK
+RECTANGLE Normal 144 161 -144 -144
+TEXT 0 0 Center 0 LT
+WINDOW 0 0 -72 Center 0
+WINDOW 3 1 86 Center 0
+SYMATTR Value LTC1565
+SYMATTR Description Linear Phase, High Frequency Lowpass Filter
+SYMATTR Prefix X
+SYMATTR ModelFile LTC1565.sub
+SYMATTR SpiceLine vvar=0 fvar=0 gvar=0
+PIN -144 -112 LEFT 8
+PINATTR PinName +IN
+PINATTR SpiceOrder 1
+PIN -144 -32 LEFT 8
+PINATTR PinName -IN
+PINATTR SpiceOrder 2
+PIN -144 48 LEFT 8
+PINATTR PinName GND
+PINATTR SpiceOrder 3
+PIN -144 128 LEFT 8
+PINATTR PinName V-
+PINATTR SpiceOrder 4
+PIN 144 128 RIGHT 8
+PINATTR PinName _SHDN
+PINATTR SpiceOrder 5
+PIN 144 48 RIGHT 8
+PINATTR PinName V+
+PINATTR SpiceOrder 6
+PIN 144 -32 RIGHT 8
+PINATTR PinName -OUT
+PINATTR SpiceOrder 7
+PIN 144 -112 RIGHT 8
+PINATTR PinName +OUT
+PINATTR SpiceOrder 8

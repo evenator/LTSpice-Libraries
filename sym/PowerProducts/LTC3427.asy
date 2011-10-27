@@ -1,0 +1,29 @@
+Version 4
+SymbolType CELL
+RECTANGLE Normal -112 -96 112 112
+TEXT 0 -24 Center 0 LT
+WINDOW 0 8 -112 Left 0
+WINDOW 3 0 24 Center 0
+SYMATTR Value LTC3427
+SYMATTR Prefix X
+SYMATTR SpiceModel LTC3427.sub
+SYMATTR Value2 LTC3427
+SYMATTR Description 500mA, 1.25MHz Synchronous Step-Up DC/DC Converter in 2mm × 2mm DFN Package
+PIN 0 -96 TOP 8
+PINATTR PinName SW
+PINATTR SpiceOrder 1
+PIN 0 112 BOTTOM 8
+PINATTR PinName GND
+PINATTR SpiceOrder 2
+PIN -112 -48 LEFT 8
+PINATTR PinName Vin
+PINATTR SpiceOrder 3
+PIN -112 64 LEFT 8
+PINATTR PinName _SHDN
+PINATTR SpiceOrder 4
+PIN 112 64 RIGHT 8
+PINATTR PinName FB
+PINATTR SpiceOrder 5
+PIN 112 -48 RIGHT 8
+PINATTR PinName Vout
+PINATTR SpiceOrder 6

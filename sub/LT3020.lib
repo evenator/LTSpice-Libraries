@@ -1,0 +1,119 @@
+* Copyright © Linear Technology Corp. 2004.  All rights reserved.
+*
+.subckt LT3020-1.2 1 2 3 4 5 6 7
+Q1 N002 N006 7 0 PE temp=27
+R15 N002 1 1m
+A2 4 N007 4 N010 4 4 N004 4 AND Tau=1u
+A1 5 4 4 4 4 4 N010 4 SCHMITT Vt=.8 Vh=1m trise=1u
+A3 7 4 4 4 4 4 N007 4 SCHMITT Vt=.92 Vh=1m Trise=1u
+A4 4 N011 N012 4 4 4 N006 4 OTA Vhigh=11 G=2 Iout=1.2m Ref=-.2
+G1 4 N011 N008 4 10µ
+C2 N011 4 10p Rser=5K Rpar=100K
+C3 N008 4 1p Rpar=1G
+C4 N006 4 65n Rser=50
+D1 5 4 BIA
+C5 7 4 1p Rpar=1G
+A5 N005 4 N012 N012 N012 N012 4 N012 VARISTOR
+D2 4 N005 F
+G2 4 N005 1 N002 20
+G3 4 N005 7 4 table(1.7 6.3m 10 7.2m)
+R1 N012 N004 10Meg
+G4 7 4 N004 4 120µ
+D3 7 4 BIA
+S1 4 1 N008 4 OV
+A6 4 7 N006 N006 N006 N006 4 N006 VARISTOR table(.5 0 10.5 10)
+R2 1 N008 100K
+R3 N008 4 20K
+.model PE PNP(Rb=100 BF=155 Cjc=1n Cje=1n VAF=3)
+.model BIA D(Ron=100 Roff=1G Ilimit=3u)
+.model F D(Ron=1m Roff=10K Vrev=30)
+.model OV SW(Ron=1 Roff=1G Vt=.21 Vh=-5m level=2 ilimit=16m oneway)
+.ends LT3020-1.2
+*
+.subckt LT3020-1.5 1 2 3 4 5 6 7
+Q1 N002 N006 7 0 PE temp=27
+R15 N002 1 1m
+A2 4 N007 4 N010 4 4 N004 4 AND Tau=1u
+A1 5 4 4 4 4 4 N010 4 SCHMITT Vt=.8 Vh=1m trise=1u
+A3 7 4 4 4 4 4 N007 4 SCHMITT Vt=.92 Vh=1m Trise=1u
+A4 4 N011 N012 4 4 4 N006 4 OTA Vhigh=11 G=2 Iout=1.2m Ref=-.2
+G1 4 N011 N008 4 10µ
+C2 N011 4 10p Rser=5K Rpar=100K
+C3 N008 4 1p Rpar=1G
+C4 N006 4 65n Rser=50
+D1 5 4 BIA
+C5 7 4 1p Rpar=1G
+A5 N005 4 N012 N012 N012 N012 4 N012 VARISTOR
+D2 4 N005 F
+G2 4 N005 1 N002 20
+G3 4 N005 7 4 table(1.7 6.3m 10 7.2m)
+R1 N012 N004 10Meg
+G4 7 4 N004 4 120µ
+D3 7 4 BIA
+S1 4 1 N008 4 OV
+A6 4 7 N006 N006 N006 N006 4 N006 VARISTOR table(.5 0 10.5 10)
+R2 1 N008 130K
+R3 N008 4 20K
+.model PE PNP(Rb=100 BF=155 Cjc=1n Cje=1n VAF=3)
+.model BIA D(Ron=100 Roff=1G Ilimit=3u)
+.model F D(Ron=1m Roff=10K Vrev=30)
+.model OV SW(Ron=1 Roff=1G Vt=.21 Vh=-5m level=2 ilimit=16m oneway)
+.ends LT3020-1.5
+*
+.subckt LT3020-1.8 1 2 3 4 5 6 7
+Q1 N002 N006 7 0 PE temp=27
+R15 N002 1 1m
+A2 4 N007 4 N010 4 4 N004 4 AND Tau=1u
+A1 5 4 4 4 4 4 N010 4 SCHMITT Vt=.8 Vh=1m trise=1u
+A3 7 4 4 4 4 4 N007 4 SCHMITT Vt=.92 Vh=1m Trise=1u
+A4 4 N011 N012 4 4 4 N006 4 OTA Vhigh=11 G=2 Iout=1.2m Ref=-.2
+G1 4 N011 N008 4 10µ
+C2 N011 4 10p Rser=5K Rpar=100K
+C3 N008 4 1p Rpar=1G
+C4 N006 4 65n Rser=50
+D1 5 4 BIA
+C5 7 4 1p Rpar=1G
+A5 N005 4 N012 N012 N012 N012 4 N012 VARISTOR
+D2 4 N005 F
+G2 4 N005 1 N002 20
+G3 4 N005 7 4 table(1.7 6.3m 10 7.2m)
+R1 N012 N004 10Meg
+G4 7 4 N004 4 120µ
+D3 7 4 BIA
+S1 4 1 N008 4 OV
+A6 4 7 N006 N006 N006 N006 4 N006 VARISTOR table(.5 0 10.5 10)
+R2 1 N008 160K
+R3 N008 4 20K
+.model PE PNP(Rb=100 BF=155 Cjc=1n Cje=1n VAF=3)
+.model BIA D(Ron=100 Roff=1G Ilimit=3u)
+.model F D(Ron=1m Roff=10K Vrev=30)
+.model OV SW(Ron=1 Roff=1G Vt=.21 Vh=-5m level=2 ilimit=16m oneway)
+.ends LT3020-1.8
+*
+.subckt LT3020 1 2 3 4 5 6 7
+Q1 N002 N006 7 0 PE temp=27
+R15 N002 1 1m
+A2 4 N007 4 N009 4 4 N004 4 AND Tau=1u
+A1 5 4 4 4 4 4 N009 4 SCHMITT Vt=.8 Vh=1m trise=1u
+A3 7 4 4 4 4 4 N007 4 SCHMITT Vt=.92 Vh=1m Trise=1u
+A4 4 N010 N012 4 4 4 N006 4 OTA Vhigh=11 G=2 Iout=1.2m Ref=-.2
+G1 4 N010 3 4 10µ
+C2 N010 4 10p Rser=5K Rpar=100K
+C3 3 4 1p Rpar=1G
+C4 N006 4 65n Rser=50
+D1 5 4 BIA
+C5 7 4 1p Rpar=1G
+A5 N005 4 N012 N012 N012 N012 4 N012 VARISTOR
+D2 4 N005 F
+G2 4 N005 1 N002 20
+G3 4 N005 7 4 table(1.7 6.3m 10 7.2m)
+R1 N012 N004 10Meg
+G4 7 4 N004 4 120µ
+D3 7 4 BIA
+S1 4 1 3 4 OV
+A6 4 7 N006 N006 N006 N006 4 N006 VARISTOR table(.5 0 10.5 10)
+.model PE PNP(Rb=100 BF=155 Cjc=1n Cje=1n VAF=3)
+.model BIA D(Ron=100 Roff=1G Ilimit=3u)
+.model F D(Ron=1m Roff=10K Vrev=30)
+.model OV SW(Ron=1 Roff=1G Vt=.21 Vh=-5m level=2 ilimit=16m oneway)
+.ends LT3020

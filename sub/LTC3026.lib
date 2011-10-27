@@ -1,0 +1,43 @@
+* Copyright © Linear Technology Corp. 2011.  All rights reserved.
+*
+.subckt LTC3026 1 2 3 4 5 6 7 8 9
+A5 6 3 3 3 3 3 N021 3 SCHMITT Vt=0.8 Vh=2m Vhigh=.4 Vlow=0 Rout=1K
+C4 6 3 100p Rpar=10Meg
+C5 N021 3 50n Rser=10
+M1 1 N019 N016 N016 PE
+C7 8 3 100p Rpar=10Meg
+C8 1 3 100p Rpar=10Meg
+D1 4 5 STA
+S1 3 4 N007 3 Q
+A3 N012 3 3 3 3 N014 3 3 SCHMITT Vt=.336 Vh=2m Trise=50n
+R4 5 N012 18.4K
+S3 3 7 P001 3 SW
+A7 8 3 3 3 3 P001 3 3 SCHMITT Vt=.368 Vh=4m Trise=50n
+S2 3 N021 N014 3 SW
+A6 N012 3 3 3 3 N010 3 3 SCHMITT Vt=.4 Vh=2m Trise=50n
+A8 N005 N009 3 3 3 N008 N004 3 SRFLOP Trise=50n
+S4 5 4 N013 3 Q
+A1 N006 3 3 3 3 N009 N005 3 SCHMITT Vt=81m Vh=71m Trise=50n
+A2 N003 N008 3 N010 N011 3 N007 3 AND Trise=50n
+A4 N003 N004 3 N010 N011 3 N013 3 AND Trise=50n
+R1 N012 3 1.6K
+C1 7 3 100p Rpar=10Meg
+S5 3 9 P002 3 OSD
+A9 8 3 3 3 3 3 P002 3 SCHMITT Vt=0.4 Vh=2m Trise=50n
+A10 1 3 3 3 3 3 N011 3 SCHMITT Vt=1.14 Vh=2m
+A11 6 3 3 3 3 3 N003 3 SCHMITT Vt=.8 Vh=2m
+A12 8 N021 N015 3 3 3 N019 3 OTA G=50u Rout=10Meg Vhigh=5 Vlow=-1
+R2 9 N016 1m
+G2 3 N015 1 3 table(1 3.2m 2.2 3.4m)
+D2 3 N015 ILMT
+G1 3 N015 9 N016 1
+B2 3 N006 I=1m*(I(S1)+I(S4)+I(D1)) Rpar=1K
+C2 3 N015 1p
+.model STA D(Ron=1 Roff=10Meg Vfwd=0.7)
+.model PE VDMOS(Vto=0 Kp=50 Rd=67m)
+.model Q SW(Ron=1 Roff=10Meg Vt=0.5 Vh=-.2)
+.model SW SW(Ron=1 Roff=100Meg Vt=0.5 Vh=-0.2)
+.model OSD SW(Ron=1K Roff=100Meg Vt=0.5 Vh=-0.2)
+.model ILMT D(Ron=1m Roff=10K  Vrev=10)
+.timedomain
+.ends LTC3026

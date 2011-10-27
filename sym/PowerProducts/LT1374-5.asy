@@ -1,0 +1,35 @@
+Version 4
+SymbolType CELL
+RECTANGLE Normal -160 -160 160 160
+TEXT 0 0 Center 0 LT
+WINDOW 0 0 -80 Center 0
+WINDOW 3 0 80 Center 0
+SYMATTR Value LT1374-5
+SYMATTR Prefix X
+SYMATTR SpiceModel LT1374.sub
+SYMATTR Value2 LT1374 top=5.36K bot=4.99K
+SYMATTR Description 4.5A, 500KHz Step-Down Switching Regulator, Fixed 5Volt Output
+PIN -64 -160 TOP 8
+PINATTR PinName Vin
+PINATTR SpiceOrder 1
+PIN 64 -160 TOP 8
+PINATTR PinName Boost
+PINATTR SpiceOrder 2
+PIN 160 32 RIGHT 8
+PINATTR PinName Sense
+PINATTR SpiceOrder 3
+PIN 0 160 BOTTOM 8
+PINATTR PinName GND
+PINATTR SpiceOrder 4
+PIN 160 -32 RIGHT 8
+PINATTR PinName BIAS
+PINATTR SpiceOrder 5
+PIN 160 96 RIGHT 8
+PINATTR PinName Vc
+PINATTR SpiceOrder 6
+PIN -160 32 LEFT 8
+PINATTR PinName _SHDN
+PINATTR SpiceOrder 7
+PIN 160 -96 RIGHT 8
+PINATTR PinName SW
+PINATTR SpiceOrder 8

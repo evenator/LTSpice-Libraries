@@ -1,0 +1,153 @@
+* Copyright © Linear Technology Corp. 2011.  All rights reserved.
+*
+.subckt LTC3025-1 1 2 3 4 5 6
+A5 6 2 2 2 2 2 N012 2 SCHMITT Vt=0.8 Vh=2m Vhigh=.4 Vlow=0 Rout=1K Tau=1u
+C4 6 2 10p Rpar=10Meg
+C5 N012 2 120n Rser=10
+M1 3 N009 N006 N006 NPE
+C7 5 2 10p Rpar=10Meg
+C8 3 2 10p Rpar=10Meg
+A3 1 2 2 2 2 N002 2 2 SCHMITT Vt=2.5 Vh=2m Trise=50n
+S2 2 N012 N004 2 SDN
+A12 5 N012 N003 2 2 2 N010 2 OTA G=50u Rout=10Meg Vhigh=5 Vlow=-1
+R2 4 N006 1m
+G2 2 N003 3 2 table(1 8.7m 2 11m 3 12m 4.5 13m 5 14m)
+D2 2 N003 ILMT
+G1 2 N003 4 N006 10
+C1 4 2 10p Rpar=10Meg
+A1 3 2 2 2 2 N005 2 2 SCHMITT Vt=.9 Vh=2m Trise=50n
+A2 2 N002 2 N005 2 2 N004 2 OR Trise=50n
+C2 N009 2 .5p
+C3 1 N009 .5p
+S1 N009 1 N010 N009 OPOS
+S3 2 N009 N009 N010 OPOS
+C9 2 N003 1p
+C10 1 2 1p
+.model NPE VDMOS(Vto=.25 Kp=50 Rd=.15)
+.model SDN SW(Ron=1 Roff=100Meg Vt=0.5 Vh=-0.2)
+.model ILMT D(Ron=1m Roff=10K  Vrev=10)
+.model OPOS SW(Ron=10 Roff=100Meg Vt=0 Vh=-.1 Ilimit=100u level=2)
+.ends LTC3025-1
+*
+.subckt LTC3025-2 1 2 3 4 5 6
+A5 6 2 2 2 2 2 N012 2 SCHMITT Vt=0.8 Vh=2m Vhigh=.4 Vlow=0 Rout=1K Tau=1u
+C4 6 2 10p Rpar=10Meg
+C5 N012 2 120n Rser=10
+M1 3 N009 N006 N006 NPE
+C8 3 2 10p Rpar=10Meg
+A3 1 2 2 2 2 N002 2 2 SCHMITT Vt=2.5 Vh=2m Trise=50n
+S2 2 N012 N004 2 SDN
+A12 N013 N012 N003 2 2 2 N010 2 OTA G=50u Rout=10Meg Vhigh=5 Vlow=-1
+R2 4 N006 1m
+G2 2 N003 3 2 table(1 8.7m 2 11m 3 12m 4.5 13m 5 14m)
+D2 2 N003 ILMT
+G1 2 N003 4 N006 10
+C1 4 2 10p Rpar=10Meg
+A1 3 2 2 2 2 N005 2 2 SCHMITT Vt=.9 Vh=2m Trise=50n
+A2 2 N002 2 N005 2 2 N004 2 OR Trise=50n
+R4 5 N013 80K
+R5 N013 2 40K
+C2 N009 2 .5p
+C3 1 N009 .5p
+S1 N009 1 N010 N009 OPOS
+S3 2 N009 N009 N010 OPOS
+C7 5 2 1p
+C9 2 N003 1p
+C11 1 2 1p
+.model NPE VDMOS(Vto=.25 Kp=50 Rd=.15)
+.model SDN SW(Ron=1 Roff=100Meg Vt=0.5 Vh=-0.2)
+.model ILMT D(Ron=1m Roff=10K  Vrev=10)
+.model OPOS SW(Ron=10 Roff=100Meg Vt=0 Vh=-.1 Ilimit=100u level=2)
+.ends LTC3025-2
+*
+.subckt LTC3025-3 1 2 3 4 5 6
+A5 6 2 2 2 2 2 N012 2 SCHMITT Vt=0.8 Vh=2m Vhigh=.4 Vlow=0 Rout=1K Tau=1u
+C4 6 2 10p Rpar=10Meg
+C5 N012 2 120n Rser=10
+M1 3 N009 N006 N006 NPE
+C8 3 2 10p Rpar=10Meg
+A3 1 2 2 2 2 N002 2 2 SCHMITT Vt=2.5 Vh=2m Trise=50n
+S2 2 N012 N004 2 SDN
+A12 N013 N012 N003 2 2 2 N010 2 OTA G=50u Rout=10Meg Vhigh=5 Vlow=-1
+R2 4 N006 1m
+G2 2 N003 3 2 table(1 8.7m 2 11m 3 12m 4.5 13m 5 14m)
+D2 2 N003 ILMT
+G1 2 N003 4 N006 10
+C1 4 2 10p Rpar=10Meg
+A1 3 2 2 2 2 N005 2 2 SCHMITT Vt=.9 Vh=2m Trise=50n
+A2 2 N002 2 N005 2 2 N004 2 OR Trise=50n
+R4 5 N013 110K
+R5 N013 2 40K
+C2 N009 2 .5p
+C3 1 N009 .5p
+S1 N009 1 N010 N009 OPOS
+S3 2 N009 N009 N010 OPOS
+C7 2 N003 1p
+C9 5 2 1p
+C10 1 2 1p
+.model NPE VDMOS(Vto=.25 Kp=50 Rd=.15)
+.model SDN SW(Ron=1 Roff=100Meg Vt=0.5 Vh=-0.2)
+.model ILMT D(Ron=1m Roff=10K  Vrev=10)
+.model OPOS SW(Ron=10 Roff=100Meg Vt=0 Vh=-.1 Ilimit=100u level=2)
+.ends LTC3025-3
+*
+.subckt LTC3025-4 1 2 3 4 5 6
+A5 6 2 2 2 2 2 N012 2 SCHMITT Vt=0.8 Vh=2m Vhigh=.4 Vlow=0 Rout=1K Tau=1u
+C4 6 2 10p Rpar=10Meg
+C5 N012 2 120n Rser=10
+M1 3 N009 N006 N006 NPE
+C8 3 2 10p Rpar=10Meg
+A3 1 2 2 2 2 N002 2 2 SCHMITT Vt=2.5 Vh=2m Trise=50n
+S2 2 N012 N004 2 SDN
+A12 N013 N012 N003 2 2 2 N010 2 OTA G=50u Rout=10Meg Vhigh=5 Vlow=-1
+R2 4 N006 1m
+G2 2 N003 3 2 table(1 8.7m 2 11m 3 12m 4.5 13m 5 14m)
+D2 2 N003 ILMT
+G1 2 N003 4 N006 10
+C1 4 2 10p Rpar=10Meg
+A1 3 2 2 2 2 N005 2 2 SCHMITT Vt=.9 Vh=2m Trise=50n
+A2 2 N002 2 N005 2 2 N004 2 OR Trise=50n
+R4 5 N013 140K
+R5 N013 2 40K
+C2 N009 2 .5p
+C3 1 N009 .5p
+S1 N009 1 N010 N009 OPOS
+S3 2 N009 N009 N010 OPOS
+C7 1 2 1p
+C9 2 N003 1p
+C10 5 2 1p
+.model NPE VDMOS(Vto=.25 Kp=50 Rd=.15)
+.model SDN SW(Ron=1 Roff=100Meg Vt=0.5 Vh=-0.2)
+.model ILMT D(Ron=1m Roff=10K  Vrev=10)
+.model OPOS SW(Ron=10 Roff=100Meg Vt=0 Vh=-.1 Ilimit=100u level=2)
+.ends LTC3025-4
+*
+.subckt LTC3025 1 2 3 4 5 6
+A5 6 2 2 2 2 2 N012 2 SCHMITT Vt=0.8 Vh=2m Vhigh=.4 Vlow=0 Rout=1K Tau=1u
+C4 6 2 10p Rpar=10Meg
+C5 N012 2 120n Rser=10
+M1 3 N009 N006 N006 PE
+C7 5 2 10p Rpar=10Meg
+C8 3 2 10p Rpar=10Meg
+A3 1 2 2 2 2 N002 2 2 SCHMITT Vt=2.5 Vh=2m Trise=50n
+S2 2 N012 N004 2 SW
+A12 5 N012 N003 2 2 2 N010 2 OTA G=50u Rout=10Meg Vhigh=5 Vlow=-1
+R2 4 N006 1m
+G2 2 N003 3 2 table(1 6.2m 3.5 8.4m 5 13.2m)
+D2 2 N003 ILMT
+G1 2 N003 4 N006 10
+C1 4 2 10p Rpar=10Meg
+A1 3 2 2 2 2 N005 2 2 SCHMITT Vt=.9 Vh=2m Trise=50n
+A2 2 N002 2 N005 2 2 N004 2 OR Trise=50n
+C2 N009 2 .5p
+C3 1 N009 .5p
+S1 N009 1 N010 N009 OPOS
+S3 2 N009 N009 N010 OPOS
+C9 N003 2 1p
+C10 1 2 1p
+.model PE VDMOS(Vto=.25 Kp=50 Rd=.15)
+.model SW SW(Ron=1 Roff=100Meg Vt=0.5 Vh=-0.2)
+.model ILMT D(Ron=1m Roff=10K  Vrev=10)
+.model OPOS SW(Ron=10 Roff=100Meg Vt=0 Vh=-.1 Ilimit=100u level=2)
+.timedomain
+.ends LTC3025

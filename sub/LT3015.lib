@@ -1,0 +1,48 @@
+* Copyright © Linear Technology Corp. 2011.  All rights reserved.
+*
+.subckt LT3015 1 2 3 4 5
+Q1 N010 N008 2 0 PN temp=27
+Q2 N008 N006 3 0 NA temp=27
+Q3 N006 N007 N013 0 NP temp=27
+C1 N006 N007 100p Rser=20K
+Q4 N007 N007 N014 0 NP 10 temp=27
+R2 N014 3 96
+R3 N013 3 175
+C2 4 N007 195p
+Q5 4 5 N012 0 FB temp=27
+R6 N012 N014 500
+G2 2 N007 N002 3 150µ
+G1 2 N006 N002 3 150µ
+R1 2 N008 50K
+R8 N010 4 .1
+A2 N009 0 N006 N006 N006 N006 3 N006 VARISTOR
+D3 N009 0 F
+G3 0 N009 4 N010 10m
+G4 0 N009 2 4 table(-18 -1.55m -10 -4.25m)
+Q7 N007 N008 N010 0 P 13m temp=27
+C4 2 N006 300p Rser=20Meg
+D1 4 2 X
+C5 5 3 1p
+C6 4 3 10p
+C7 2 3 10p
+G5 N009 0 N002 3 table(-1 0 0 -4.5m)
+C8 2 N007 4n Rser=12Meg Rpar=35Meg
+D2 1 3 S2
+D4 1 3 S1
+D5 3 1 S3
+A3 1 3 3 3 3 3 N001 3 SCHMITT Vt=.96 Vh=.24
+A4 3 N001 3 N004 3 N002 3 3 OR tau=10u ref=.5 Vhigh=0 Vlow=-1
+A1 1 3 3 3 3 N004 3 3 SCHMITT Vt=-.96 Vh=.24
+R5 5 2 .75G
+G6 3 5 N002 3 60n
+.model P NPN(BF=100)
+.model NP PNP(Cje=10p Cjc=10p BF=150)
+.model NA PNP(BF=6K Cje=5p Cjc=5p Re=50)
+.model PN NPN(BF=300 Cje=400p Cjc=400p Tf=5n)
+.model FB PNP(Cje=10p Cjc=10p BF=30K)
+.model F D(Ron=1m Roff=570 epsilon=.1)
+.model X D(Ron=10 Vfwd=30)
+.model S1 D(Ron=250K epsilon=.5 Ilimit=10u)
+.model S2 D(Ron=3Meg epsilon=.5)
+.model S3 D(Ron=3Meg epsilon=2 Vfwd=3)
+.ends LT3015

@@ -1,0 +1,41 @@
+Version 4
+SymbolType CELL
+RECTANGLE Normal -128 -224 128 208
+TEXT 0 -8 Center 0 LT
+WINDOW 0 0 -120 Center 0
+WINDOW 3 0 103 Center 0
+SYMATTR Value LTC3824
+SYMATTR Prefix X
+SYMATTR SpiceModel LTC3824.sub
+SYMATTR Value2 LTC3824
+SYMATTR Description High Voltage Step-Down Controller with 40µA Quiescent Current
+PIN 0 208 BOTTOM 8
+PINATTR PinName GND
+PINATTR SpiceOrder 1
+PIN -128 -176 LEFT 8
+PINATTR PinName Mode
+PINATTR SpiceOrder 2
+PIN -128 160 LEFT 8
+PINATTR PinName Rset
+PINATTR SpiceOrder 3
+PIN -128 -64 LEFT 8
+PINATTR PinName Vc
+PINATTR SpiceOrder 4
+PIN 128 160 RIGHT 8
+PINATTR PinName FB
+PINATTR SpiceOrder 5
+PIN -128 48 LEFT 8
+PINATTR PinName SS
+PINATTR SpiceOrder 6
+PIN 128 -64 RIGHT 8
+PINATTR PinName Sense
+PINATTR SpiceOrder 7
+PIN 128 -176 RIGHT 8
+PINATTR PinName Vcc
+PINATTR SpiceOrder 8
+PIN 128 48 RIGHT 8
+PINATTR PinName Gate
+PINATTR SpiceOrder 9
+PIN 0 -224 TOP 8
+PINATTR PinName Cap
+PINATTR SpiceOrder 10

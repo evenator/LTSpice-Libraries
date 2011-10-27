@@ -1,0 +1,125 @@
+* Copyright © Linear Technology Corp. 2004.  All rights reserved.
+*
+.subckt LT1121-3.3 1 2 3 4 5 6 7 8
+Q1 N009 N001 8 0 PN
+Q2 N001 N002 3 0 NA
+Q3 N002 N003 N005 0 NP temp=27
+C1 N002 N003 20p Rser=300K
+Q4 N003 N003 N004 0 NP 10 temp=27
+R2 N004 3 2K
+R3 N005 3 2.4K
+C2 1 N003 20p Rser=20K
+Q5 1 1 N006 0 FB temp=27
+R6 N006 N004 81K
+I1 8 5 6µ load
+G2 8 N003 N008 3 7µ
+G1 8 N002 N008 3 7µ
+R1 8 N001 150K
+R8 N009 1 1.1
+A2 N010 0 N002 N002 N002 N002 3 N002 VARISTOR
+D3 0 N010 F
+G3 0 N010 1 N009 10m
+Q7 N003 N001 N009 0 P 10m
+D1 8 1 X
+C5 1 3 10p
+C7 8 3 10p
+G5 N010 0 N008 3 table(0 3m 1 0)
+A1 5 3 3 3 3 3 N008 3 SCHMITT Vt=.95 Vh=1m trise=2m
+D2 5 3 A
+D4 3 5 B
+I2 0 N010 3m
+C4 8 N002 50p Rser=.1G
+C6 8 N003 500p Rser=.1G Rpar=3G
+.model PN PNP(BF=25 Cje=500p Cjc=500p)
+.model NA NPN(BF=150K Cje=1p Cjc=1p Re=40)
+.model NP NPN(Cje=10p Cjc=10p BF=150)
+.model FB NPN(Cje=5p Cjc=5p BF=200)
+.model F D(Ron=1m Roff=10K)
+.model P PNP(BF=100)
+.model X D(Ron=10 Vfwd=30)
+.model A D(Ron=110 Vfwd=6.6)
+.model B D(Ron=2 Vrev=7.5 Vfwd=.6)
+.ends LT1121-3.3
+*
+.subckt LT1121-5 1 2 3 4 5 6 7 8
+Q1 N009 N001 8 0 PN
+Q2 N001 N002 3 0 NA
+Q3 N002 N003 N005 0 NP temp=27
+C1 N002 N003 20p Rser=300K
+Q4 N003 N003 N004 0 NP 10 temp=27
+R2 N004 3 2K
+R3 N005 3 2.4K
+C2 1 N003 20p Rser=20K
+Q5 1 1 N006 0 FB temp=27
+R6 N006 N004 135.5K
+I1 8 5 6µ load
+G2 8 N003 N008 3 7µ
+G1 8 N002 N008 3 7µ
+R1 8 N001 150K
+R8 N009 1 1.1
+A2 N010 0 N002 N002 N002 N002 3 N002 VARISTOR
+D3 0 N010 F
+G3 0 N010 1 N009 10m
+Q7 N003 N001 N009 0 P 10m
+D1 8 1 X
+C5 1 3 10p
+C7 8 3 10p
+G5 N010 0 N008 3 table(0 3m 1 0)
+A1 5 3 3 3 3 3 N008 3 SCHMITT Vt=.95 Vh=1m trise=2m
+D2 5 3 A
+D4 3 5 B
+I2 0 N010 3m
+C4 8 N002 50p Rser=.1G
+C6 8 N003 500p Rser=.1G Rpar=3G
+.model PN PNP(BF=25 Cje=500p Cjc=500p)
+.model NA NPN(BF=150K Cje=1p Cjc=1p Re=40)
+.model NP NPN(Cje=10p Cjc=10p BF=150)
+.model FB NPN(Cje=5p Cjc=5p BF=200)
+.model F D(Ron=1m Roff=10K)
+.model P PNP(BF=100)
+.model X D(Ron=10 Vfwd=30)
+.model A D(Ron=110 Vfwd=6.6)
+.model B D(Ron=2 Vrev=7.5 Vfwd=.6)
+.ends LT1121-5
+*
+.subckt LT1121 1 2 3 4 5 6 7 8
+Q1 N009 N001 8 0 PN
+Q2 N001 N002 3 0 NA
+Q3 N002 N003 N005 0 NP temp=27
+C1 N002 N003 20p Rser=300K
+Q4 N003 N003 N004 0 NP 10 temp=27
+R2 N004 3 2K
+R3 N005 3 2.4K
+C2 1 N003 20p Rser=20K
+Q5 1 2 N006 0 FB temp=27
+R6 N006 N004 95.4K
+I1 8 5 6µ load
+G2 8 N003 N008 3 7µ
+G1 8 N002 N008 3 7µ
+R1 8 N001 150K
+R8 N009 1 1.1
+A2 N010 0 N002 N002 N002 N002 3 N002 VARISTOR
+D3 0 N010 F
+G3 0 N010 1 N009 10m
+Q7 N003 N001 N009 0 P 10m
+D1 8 1 X
+C5 1 3 10p
+C7 8 3 10p
+G5 N010 0 N008 3 table(0 3m 1 0)
+A1 5 3 3 3 3 3 N008 3 SCHMITT Vt=.95 Vh=1m trise=2m
+D2 5 3 A
+D4 3 5 B
+I2 0 N010 3m
+C4 8 N002 50p Rser=.1G
+C6 2 3 10p
+C8 8 N003 500p Rser=.1G Rpar=3G
+.model PN PNP(BF=25 Cje=500p Cjc=500p)
+.model NA NPN(BF=150K Cje=1p Cjc=1p Re=40)
+.model NP NPN(Cje=10p Cjc=10p BF=150)
+.model FB NPN(Cje=5p Cjc=5p BF=200)
+.model F D(Ron=1m Roff=10K)
+.model P PNP(BF=100)
+.model X D(Ron=10 Vfwd=30)
+.model A D(Ron=110 Vfwd=6.6)
+.model B D(Ron=2 Vrev=7.5 Vfwd=.6)
+.ends LT1121

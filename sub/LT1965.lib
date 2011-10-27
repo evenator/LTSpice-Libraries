@@ -1,0 +1,82 @@
+* Copyright © Linear Technology Corp. 2008.  All rights reserved.
+*
+.subckt LT1965-x.x 1 2 3 4 5
+Q1 N007 N005 2 0 PN
+Q2 N005 N003 3 0 NA
+Q3 N003 N004 N011 0 NP temp=27
+C1 N003 N004 11p Rser=20K
+Q4 N004 N004 N012 0 NP 10 temp=27
+R2 N012 3 200
+R3 N011 3 175
+C2 4 N004 195p
+Q5 4 N009 N010 0 FB temp=27
+R6 N010 N012 1.361K
+R5 1 3 10Meg
+I1 1 3 3µ load
+A1 1 3 3 3 3 3 N002 3 SCHMITT Vt=.8 Vh=1m trise=1m
+G2 2 N004 N002 3 50µ
+G1 2 N003 N002 3 50µ
+R1 2 N005 50K
+R8 N007 4 .1
+A2 N006 0 N003 N003 N003 N003 3 N003 VARISTOR
+D3 0 N006 F
+G3 0 N006 4 N007 10m
+G4 0 N006 2 4 table(0 3.5m 6 4.5m 14 2m)
+Q7 N004 N005 N007 0 P 1m
+C4 2 N003 300p Rser=20Meg
+D1 2 4 X
+C5 5 3 1p
+C6 4 3 10p
+C7 2 3 10p
+G5 N006 0 N002 3 table(0 4.5m 1 0)
+C8 2 N004 4n Rser=12Meg Rpar=35Meg
+R4 5 N009 {R}
+R7 N009 3 12.2K
+.model P PNP(BF=100)
+.model NP NPN(Cje=5p Cjc=5p BF=150)
+.model NA NPN(BF=60K Cje=5p Cjc=5p Re=5)
+.model PN PNP(BF=25 Cje=200p Cjc=200p Tf=20n)
+.model FB NPN(Cje=10p Cjc=10p BF=100)
+.model F D(Ron=1m Roff=570 epsilon=.1)
+.model X D(Ron=10 Vfwd=30)
+.ends LT1965-x.x
+*
+.subckt LT1965 1 2 3 4 5
+Q1 N007 N005 2 0 PN
+Q2 N005 N003 3 0 NA
+Q3 N003 N004 N010 0 NP temp=27
+C1 N003 N004 11p Rser=20K
+Q4 N004 N004 N011 0 NP 10 temp=27
+R2 N011 3 200
+R3 N010 3 175
+C2 4 N004 195p
+Q5 4 5 N009 0 FB temp=27
+R6 N009 N011 1.361K
+R5 1 3 10Meg
+I1 1 3 3µ load
+A1 1 3 3 3 3 3 N002 3 SCHMITT Vt=.8 Vh=1m trise=1m
+G2 2 N004 N002 3 50µ
+G1 2 N003 N002 3 50µ
+R1 2 N005 50K
+R8 N007 4 .1
+A2 N006 0 N003 N003 N003 N003 3 N003 VARISTOR
+D3 0 N006 F
+G3 0 N006 4 N007 10m
+G4 0 N006 2 4 table(0 3.5m 6 4.5m 14 2m)
+Q7 N004 N005 N007 0 P 1m
+C4 2 N003 300p Rser=20Meg
+D1 2 4 X
+C5 5 3 1p
+C6 4 3 10p
+C7 2 3 10p
+G5 N006 0 N002 3 table(0 4.5m 1 0)
+C8 2 N004 4n Rser=12Meg Rpar=35Meg
+V2 N008 0 1.1
+.model P PNP(BF=100)
+.model NP NPN(Cje=5p Cjc=5p BF=150)
+.model NA NPN(BF=60K Cje=5p Cjc=5p Re=5)
+.model PN PNP(BF=25 Cje=200p Cjc=200p Tf=20n)
+.model FB NPN(Cje=10p Cjc=10p BF=100)
+.model F D(Ron=1m Roff=570 epsilon=.1)
+.model X D(Ron=10 Vfwd=30)
+.ends LT1965

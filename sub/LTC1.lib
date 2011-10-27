@@ -1,0 +1,2209 @@
+* Copyright © Linear Technology Corp. 1998-2006. All rights reserved.
+*
+* This library of macromodels is being supplied to LTC users as an
+* aid to circuit design. While the models reflect reasonably
+* close similarity to corresponding devices in performance terms,
+* their use is not suggested as a replacement for breadboarding.
+* Simulation should be used as a forerunner or a supplement to
+* traditional lab testing.
+*
+* Users should very carefully note the following factors regarding
+* these models: Model performance in general will reflect typical
+* baseline specs for a given device, and certain aspects of per-
+* formance may not be modeled fully. While reasonable care has
+* been taken in their preparation, we cannot be responsible for
+* correct application on any and all computer systems. Model users
+* are hereby notified that these models are supplied "as is", with
+* no direct or implied responsibility on the part of LTC for their
+* operation within a customer circuit or system. Further, Linear
+* Technology Corporation reserves the right to change these models
+* without prior notice.
+*
+* In all cases, the current data sheet information for a given real
+* device is your final design guideline, and is the only actual
+* performance guarantee. For further technical information, refer
+* to individual device data sheets.
+*
+* Linear Technology Corporation
+* 1630 McCarthy Blvd.
+* Milpitas, CA 95035-7417
+* voice: (408) 432-1900
+* fax: (408) 434-0507
+*
+* Pinout (same as IC): GND IN+ IN- V- BAL STROBE OUT V+
+.SUBCKT LT1011 1 2 3 4 5 6 7 8
+DIN3 4 2 DIN
+DIN4 4 3 DIN
+RG1 23 0 4.5E6
+GTRFOC 0 24 VALUE={MAX(0,5*tanh(V(23)))}
+RTRFOC 24 0 1
+CTRFOC 24 0 1E-8
+ITYP 8 4 1.5E-3
+DV1 56 23 DVLIM
+DV2 56 0 DVLIM
+GIN 0 23 VALUE={11*tanh(V(3,2)+3E-4)+1.78E-6*((((V(2)+V(3))/2)-V(4)))}
+IB1 0 2 15.2E-9
+IB2 0 3 15E-9
+ROUT 8 7 1E9
+GSTR 23 0 VALUE={10+10*TANH(100*(V(55,6)-0.05))}
+CG1 0 23 2E-9
+RB1 55 5 300
+RB2 0 55 100
+GBAL 0 23 VALUE={-10*V(5,6)}
+RB3 6 55 300
+GB3 0 55 VALUE={0.01*(V(8)-0.125)-4.4E-6*V(24,1)}
+MOUT 11 24 1 1 NOUT
+GNO 0 24 1 0 1
+CEM 1 4 1E-10
+CIN1 2 8 3E-12
+CIN2 2 4 3E-12
+CIN3 3 8 3E-12
+CIN4 3 4 3E-12
+COUT 7 1 5E-11
+GVESAT 24 0 VALUE={10+10*TANH(5*(V(1,8)+2))}
+GILIM 7 11 VALUE={MIN(5E-2,10*V(7,11))}
+RDUM1 7 11 1E11
+.MODEL NOUT NMOS(KF=0 KP=0.02 VTO=0.1 RD=7)
+.MODEL DVLIM D(BV=3 IS=1E-18 KF=0 RS=0 XTI=0)
+.MODEL DIN D(KF=0 RS=0)
+.ENDS LT1011
+*
+* Pinout: IN+ IN- VCC VEE OUT LATCH
+.SUBCKT LT1015 3 2 7 4 6 107
+ROUT2 6 4 1E8
+CDUM1 138 4 0.01p
+CDUM2 4 3 0.01p
+CIBIAS1 112 0 10p
+CIBIAS2 111 0 10p
+CLATCH1 140 0 10p
+CPROP 135 0 7.0E-9
+CTRF 148 0 3.0E-9
+DHYST1 108 109 DSW
+DHYST2 108 136 DSW
+DILIM1 114 116 DSW
+DILIM2 116 115 DSW
+DPROP1 125 0 DIODE
+DPROP2 0 125 DIODE
+DPWR1 146 126 DSW
+DPWR2 127 101 DSW
+DVLIM1 142 121 DVLIM
+DVLIM2 123 142 DVLIM
+DVLIM3 145 121 DVLIM
+DVLIM4 123 145 DVLIM
+EGND 102 0 101 0 1
+EHYST1 109 0 118 0 1E5
+EIBIAS1 113 0 3 2 100
+EILIM1 117 0 116 0 100
+EIN 139 0 118 0 1
+EINCM1 105 0 3 0 1
+EINCM2 106 0 2 0 1
+ELATCH1 120 0 142 143 0.1
+ELDO1 121 0 146 122 1
+ELDO2 123 0 101 124 1
+EOM 144 0 143 0 1
+ETRF 128 0 145 0 1
+EVCC1 132 0 7 0 1
+EVEE1 134 0 4 0 1
+EVS 147 0 146 0 1
+GCMRR 0 118 137 141 1.0E-5
+GGAIN 0 145 135 0 1
+GHYST2 0 125 136 0 1
+GIBIAS1 3 0 111 0 1E-6
+GIBIAS2 2 0 112 0 1E-6
+GILIM1 0 114 142 119 1E4
+GILIM2 115 0 119 142 1E4
+GILIM3 0 149 148 117 1
+GIN 0 118 3 138 1
+GOUT 0 142 149 144 2
+GPROP 0 125 140 0 2511.89
+GPSRRN 0 118 4 141 1.0E-5
+GPSRRP 0 118 7 141 1.0E-5
+GPWRO1 126 0 142 119 10
+GPWRO2 127 0 142 119 10
+IHYST2 0 108 125.594
+IIBIAS 0 110 1.5E+1
+ILIM1 114 0 1.5E+2
+ILIM2 0 115 1.5E+2
+IOS 3 2 1.0E-7
+ITYP1 7 0 3.3E-2
+ITYP2 0 4 3.3E-2
+IVOS 0 118 1.0E-3
+RDUM1 130 119 0.001
+RHYST2 108 0 1k
+RHYST3 136 0 1
+RIBIAS1 112 0 1
+RIBIAS2 111 0 1
+RIBIAS3 110 112 10k
+RILIM 119 142 0.1
+RILIM1 116 0 1
+RILIM2 114 0 1
+RILIM3 115 0 1
+RILIM4 149 0 1
+RIN 118 0 1
+RINCM1 137 105 1
+RINCM2 106 137 1
+RLATCH 7 107 1E9
+RLATCH1 140 0 1
+RMID1 141 132 1
+RMID2 134 141 1
+ROUT 144 142 1
+ROX 145 0 1000
+RPROP1 125 0 1
+RPROP2 135 125 1.307
+RPWR1 126 147 1E3
+RPWR2 127 102 1E3
+RSHD7 130 6 1E-4
+RTRF 148 128 0.63662
+RVCC 7 146 1E-4
+RVEE 4 101 1E-4
+RVNOI 138 2 603865
+RVOM1 143 147 1
+RVOM2 102 143 1
+SIBIAS1 111 110 113 0 SWBIAS
+SLATCH1 140 139 107 134 SWLATCH
+SLATCH2 140 120 107 134 SWLATCHX
+VLDO1 122 0 2.9557
+VLDO2 0 124 1.8557
+.MODEL SWHYST VSWITCH(ROFF=1E5 RON=1E-4 VON=1 VOFF=-1)
+.MODEL SWLATCH VSWITCH(ROFF=1E7 RON=1E-4 VON=1.80 VOFF=2.2)
+.MODEL SWLATCHX VSWITCH(ROFF=1E7 RON=1E-4 VON=2.20 VOFF=1.8)
+.MODEL SWBIAS VSWITCH(ROFF=1E7 RON=1E-4 VON=2 VOFF=-2)
+.MODEL SHDN VSWITCH(ROFF=1G RON=0.1 VON=1.80 VOFF=2.0)
+.MODEL SHDNX VSWITCH(ROFF=1E7 RON=0.001 VON=2.00 VOFF=1.8)
+.MODEL SHDNO VSWITCH(ROFF=1000000 RON=0.001 VON=1.80 VOFF=2.0)
+.MODEL SHDNOX VSWITCH(ROFF=1000000 RON=0.001 VON=2.00 VOFF=1.80)
+.MODEL DSW D(IS=1E-10 RS=0 XTI=0 KF=0)
+.MODEL DIODE D(IS=1E-18 KF=0 XTI=0 RS=1E-8)
+.MODEL DVLIM D(IS=1E-24 KF=0 RS=0 XTI=0)
+.ENDS LT1015
+*
+.subckt LT1017 1 2 3 4 5
+B1 0 N002 I=10u*dnlim(uplim(V(1),V(3)-.6,.1), V(4)-.35,.1)+1n*V(1)-.53n
+B2 N002 0 I=10u*dnlim(uplim(V(2),V(3)-.59,.1), V(4)-.36, .1)+1n*V(2)
+C1 N002 0 1f Rpar=100K noiseless
+A1 0 N002 0 0 0 0 N009 0 OTA g=11m iout=1.1m Vlow=-1e308 Vhigh=1e308 Cout=1p
+C5 3 5 5p
+C6 5 4 15p
+D5 0 N009 DLAT
+C4 2 4 .1p
+C10 1 4 .1p
+C11 3 2 .1p
+C12 3 1 .1p
+D2 2 1 DBIASC
+D6 1 4 DBIAS
+D9 2 4 DBIAS
+M1 5 N008 N011 N011 N temp=27
+D1 N011 4 DOUTN1
+D7 N011 4 DOUTN3
+D8 N011 4 DOUTN2
+D10 3 N003 DOUTP
+D11 4 N007 XD
+C2 5 N008 3e-17 Rser=1G
+D15 N008 N007 DASYM
+R2 N008 4 100G
+C7 N008 0 1e-16
+G2 4 N007 0 N009 25n
+C8 N007 4 320f
+R3 3 4 4Meg
+GP1 3 4 N011 4 2m
+C9 N011 4 1p
+C13 3 N003 1p
+D3 3 5 DTRICKLE
+SW1 4 N004 5 4 SPFB
+M3 5 N004 N003 N003 P temp=27
+D12 3 N004 DLIMP
+C3 3 N004 5p Rpar=10Meg
+D4 4 5 DSI temp=27
+G1 3 4 3 N004 100µ
+.model DBIAS D(Ron=1k Roff=10G Vfwd=1 epsilon=.1 ilimit=3n)
+.model DBIASC D(Ron=20Meg Roff=10G Vfwd= 1u Vrev=1u
++ epsilon=10u revepsilon=10u ilimit=3n revilimit=3n)
+.model XD D(Ron=1k Roff=1G Vfwd=1.2 Vrev=1 epsilon=.1 revepsilon=.1)
+.model DLAT D(Ron=100 Roff=10k Vfwd=2.4 Vrev=1.9 epsilon=2.1 revepsilon=1.6)
+.model N VDMOS(Vto=100m kp=1.5  rds=200Meg)
+.model DOUTN1 D(Vfwd=5m Ron=2k Roff=100k epsilon=.1m)
+.model DOUTN2 D(Vfwd=25m  Ron=35 Roff=100k epsilon=10m)
+.model DOUTN3 D(Vfwd=55m Ron=2 Roff=100k epsilon=20m ilimit=55m )
+.model DSI D(cjo=130p  m=.5 vj=1 is=1e-30 n=5)
+.model DASYM D(Ron=1G Roff=2G Vfwd=0 epsilon=100m)
+.model SPFB sw(Ron=10Meg Roff=1G vt=.19 vh=-.05)
+.model DTRICKLE D(Ron=1k Roff=50Meg Vfwd=.5 ilimit=4u epsilon=.1)
+.model P VDMOS(Vto=-20m kp=18m rds=100Meg pchan)
+.model DLIMP D(Vfwd=.2 Ron=10k Roff=1G epsilon=.1)
+.model DOUTP D(Vfwd=39m Ron=1k Roff=1G epsilon=10m)
+.model SPFB sw(Ron=10Meg Roff=1G vt=.19 vh=-.05)
+.model DTRICKLE D(Ron=1k Roff=50Meg Vfwd=.5 ilimit=4u epsilon=.1)
+.ends LT1017
+*
+.subckt LT1018 1 2 3 4 5
+B1 0 N002 I=10u*dnlim(uplim(V(1),V(3)-.6,.1), V(4)-.35,.1)+1n*V(1)-583p
+B2 N002 0 I=10u*dnlim(uplim(V(2),V(3)-.59,.1), V(4)-.36, .1)+1n*V(2)
+C1 N002 0 1f Rpar=100K noiseless
+A1 0 N002 0 0 0 0 N009 0 OTA g=11m iout=1.1m Vlow=-1e308 Vhigh=1e308 Cout=1p
+C5 3 5 1p
+C6 5 4 15p
+D5 0 N009 DLAT
+C4 2 4 .1p
+C10 1 4 .1p
+D13 3 4 DP
+C11 3 2 .1p
+C12 3 1 .1p
+D2 2 1 DBIASC
+D6 1 4 DBIAS
+D9 2 4 DBIAS
+M1 5 N008 N011 N011 N temp=27
+D7 N011 4 DOUTN3
+D8 N011 4 DOUTN2
+D10 3 N003 DOUTP
+M2 5 N004 N003 N003 P temp=27
+D11 4 N007 XD
+D14 4 5 DSI TEMP=27
+C2 5 N008 7e-17 Rser=1G
+D15 N008 N007 DASYM
+R2 N008 4 100G
+C7 N008 0 5e-16
+G2 0 N007 0 N009 25n
+C8 N007 4 55f
+R3 3 4 3.5Meg
+GP1 3 4 N011 4 4m
+C9 N011 4 1p Rpar=1K
+C13 3 N003 1p
+SW1 4 N004 5 4 SPFB
+C3 3 N004 3p Rpar=10Meg
+D1 3 N004 DLIMP
+D3 3 5 DTRICKLE
+G3 3 4 3 N004 135µ
+.model DP D(Ron=100 Roff=1Meg Vfwd=1 ilimit=56u)
+.model DBIAS D(Ron=1k Roff=10G Vfwd=1 epsilon=.1 ilimit=3n)
+.model DBIASC D(Ron=20Meg Roff=10G Vfwd= 1u Vrev=1u
++ epsilon=10u revepsilon=10u ilimit=3n revilimit=3n)
+.model XD D(Ron=1k Roff=1G Vfwd=1.2 Vrev=1 epsilon=.1 revepsilon=.1)
+.model DLAT D(Ron=100 Roff=10k Vfwd=2.4 Vrev=1.9 epsilon=2.1 revepsilon=1.6)
+.model N VDMOS(Vto=100m kp=1.5  rds=100Meg)
+.model DOUTN2 D(Vfwd=25m  Ron=35 Roff=100k epsilon=10m)
+.model DOUTN3 D(Vfwd=55m Ron=2 Roff=100k epsilon=20m ilimit=55m )
+.model P VDMOS(Vto=-20m kp=25.1m rds=200Meg pchan )
+.model DOUTP D(Vfwd=39m Ron=100 Roff=1G epsilon=10m)
+.model DLIMP D(Vfwd=.2 Ron=10k Roff=1G epsilon=.1)
+.model DSI D( cjo= 130p  m=.5 vj=1 is=1e-30 n=5)
+.model DASYM D(Ron=1G Roff=2G Vfwd=0 epsilon=100m)
+.model SPFB sw(Ron=10Meg Roff=1G vt=.15 vh=-.05)
+.model DTRICKLE D(Ron=1k Roff=50Meg Vfwd=.5 ilimit=9u epsilon=.1)
+.ends LT1018
+*
+.subckt LT1711 1 2 3 4 5 6 7 8
+A3 8 5 0 0 0 0 N014 0 SCHMITT Vt=1.6 Vh=100m tau=1n
+B1 0 N004 I=10u*dnlim(uplim(V(1),V(3)+.2,.1), V(4)-.2 ,.1)+1n*V(1)
+B2 N004 0 I=10u*dnlim(uplim(V(2),V(3)+.21,.1), V(4)-.21, .1)+1n*V(2)
+C1 N004 0 1f Rpar=100K noiseless
+A1 0 N004 0 0 0 0 N007 0 OTA g=10m iout=100u Vlow=-1e308 Vhigh=1e308 Cout=.1f
+D3 N003 3 X
+D4 5 N003 X
+C2 N003 0 .28f
+R1 8 5 333k
+M1 6 N003 5 5 NI temp=27
+M2 6 N003 3 3 PI temp=27
+C5 3 6 .5p
+C6 6 5 .5p
+D7 N010 3 X
+D8 5 N010 X
+G5 0 N010 N007 0 195n
+C7 N010 0 .28f
+C8 3 7 .5p
+C9 7 5 .5p
+M3 7 N010 3 3 PI temp=27
+M4 7 N010 5 5 NI temp=27
+D5 0 N007 DLAT
+G2 0 N003 0 N007 195n
+A2 N011 0 N014 0 0 0 N007 0 OTA g=10m linear Vlow=-1e308 Vhigh=1e308
+D1 0 N011 DLAT
+C3 N011 0 1f
+G3 0 N011 0 N007 10m
+R2 3 N002 1k
+R3 N002 4 4k
+D2 N002 2 DBOUT1
+D6 N002 2 DBOUT2
+D9 2 N002 DBIN
+D10 N009 1 DBOUT1
+D11 N009 1 DBOUT2
+D12 1 N009 DBIN
+C4 2 4 .5p
+C10 1 4 .5p
+C11 4 5 .5p
+C12 N002 5 5p
+R4 3 N009 1k
+R5 N009 4 4k
+C13 N009 5 5p
+D13 3 4 DP1
+D14 3 5 DP2
+.model X D(Ron=1k Roff=1G Vfwd=.2 epsilon=.1 noiseless)
+.model DLAT D(Ron=1 Roff=10k Vfwd=1 Vrev=1 epsilon=.1 revepsilon=.1 noiseless)
+.model NI VDMOS(Vto=500m kp=30m mtriode=.2 rds=1.5k)
+.model PI VDMOS(Vto=-500m Kp=25m  mtriode=.2  rds=1.5k pchan)
+.model DBIN D(Ron=50k Roff=1G Vfwd=0 epsilon=.1 ilimit=1.9u)
+.model DBOUT1 D(Ron=100k Roff=1G Vfwd=0 epsilon=.1 ilimit=2u)
+.model DBOUT2 D(Ron=600k Roff=1G Vfwd=.4 epsilon=.1)
+.model DP1  D(Ron=100 Roff=1Meg Vfwd=1 ilimit=6m)
+.model DP2  D(Ron=100 Roff=1Meg Vfwd=1 ilimit=.5m)
+.ends LT1711
+*
+.subckt LT1713 1 2 3 4 5 6 7 8
+A3 8 5 0 0 0 0 N018 0 SCHMITT Vt=1.6 Vh=100m tau=1n
+B1 0 N003 I=10u*dnlim(uplim(V(1),V(3)+.2,.1), V(4)-.2 ,.1)+1n*V(1)
+B2 N003 0 I=10u*dnlim(uplim(V(2),V(3)+.21,.1), V(4)-.21, .1)+1n*V(2)
+C1 N003 0 1f Rpar=100K noiseless
+A1 0 N003 0 0 0 0 N008 0 OTA g=15m iout=100u Vlow=-1e308 Vhigh=1e308 Cout=1f
+C2 N005 0 .04f
+R1 8 5 333k
+M1 6 N005 N009 N009 NI temp=27
+M2 6 N005 N004 N004 PI temp=27
+C5 3 6 5p
+C6 6 5 5p
+G5 0 N014 N008 0 65n
+D5 0 N008 DLAT
+G2 0 N005 0 N008 65n
+A2 N012 0 N018 0 0 0 N008 0 OTA g=10m linear Vlow=-1e308 Vhigh=1e308
+D1 0 N012 DLAT
+C3 N012 0 1p
+G3 0 N012 0 N008 10m
+R2 3 N002 2k
+R3 N002 4 8k
+D2 N002 2 DBOUT1
+D6 N002 2 DBOUT2
+D9 2 N002 DBIN
+D10 N011 1 DBOUT1
+D11 N011 1 DBOUT2
+D12 1 N011 DBIN
+C4 2 4 .5p
+C10 1 4 .5p
+C11 4 5 .5p
+C12 N002 5 5p
+R4 3 N011 2k
+R5 N011 4 8k
+C13 N011 5 5p
+D13 3 4 DP1
+D14 3 5 DP2
+R6 3 N005 590Meg
+R7 N005 5 537Meg
+D3 N005 3 DSIU temp=27
+D7 5 N005 DSID temp=27
+D15 3 N004 DILIMU
+D17 N011 1 DBOUT3
+D18 N002 2 DBOUT3
+D19 N009 5 DILIMD
+C14 6 N005 .016f
+C7 N014 0 .04f
+M3 7 N014 N017 N017 NI temp=27
+M4 7 N014 N013 N013 PI temp=27
+C8 3 7 5p
+C9 7 5 5p
+R8 3 N014 590Meg
+R9 N014 5 537Meg
+D4 N014 3 DSIU temp=27
+D8 5 N014 DSID temp=27
+D16 3 N013 DILIMU
+D20 N017 5 DILIMD
+C15 7 N014 .016f
+C16 3 N004 100f
+C17 N009 5 100f
+C18 3 N013 100f
+C19 N017 5 100f
+.model DLAT D(Ron=1 Roff=10k Vfwd=1 Vrev=1 epsilon=.9 revepsilon=.9)
+.model DILIMU D(Ron=10 Roff=1k Vfwd=120m ilimit=42m epsilon=50m)
+.model DILIMD D(Ron=10 Roff=1k Vfwd=110m ilimit=50m epsilon=50m)
+.model DSIU D(Is=1e-10 N=1 TT=6.5e-9)
+.model DSID D(Is=1e-10 N=1 TT=6.2e-9)
+.model NI VDMOS(Vto=100m kp=160m mtriode= .1 rds=10k)
+.model PI VDMOS(Vto=-80m Kp=160m  mtriode=.1 rds=10k pchan)
+.model DP1  D(Ron=100 Roff=1Meg Vfwd=1 ilimit=2m)
+.model DP2  D(Ron=100 Roff=1Meg Vfwd=1 ilimit=1.05m)
+.model DBIN D(Ron=50k Roff=1G Vfwd=0 epsilon=.1 ilimit=1u)
+.model DBOUT1 D(Ron=100k Roff=1G Vfwd=0 epsilon=.1 ilimit=.9u)
+.model DBOUT2 D(Ron=1.7Meg Roff=1G Vfwd=.4 epsilon=.1)
+.model DBOUT3 D(Ron=100k Roff=1G Vfwd=2.4 epsilon=.1 ilimit = 600n)
+.ends LT1713
+*
+.subckt LT1715 1 2 3 4 5 6 7
+B1 0 N002 I=10u*dnlim(uplim(V(1),V(3)-1.1,.1), V(4)-.2 ,.1)+1n*V(1)+144n*V(VDH)
+B2 N002 0 I=10u*dnlim(uplim(V(2),V(3)-1.09,.1), V(4)-.21, .1)+1n*V(2)
+C1 N002 0 1f Rpar=100K
+A1 0 N002 0 0 0 0 VDH 0 OTA g=10m iout=100u Vlow=-1e308 Vhigh=1e308 Cout=30f
+D5 0 VDH DLAT
+C4 2 4 .2p
+C10 1 4 .2p
+C11 4 6 2p
+D13 3 4 DP1
+D14 5 4 DP2
+M3 7 N009 N010 N010 NI temp=27
+M4 7 N007 N005 N005 PI temp=27
+C7 5 7 1p
+C8 7 6 1p
+D8 5 N005 DILIMU
+D16 N010 6 DILIMD
+C9 5 N005 100f
+C14 N010 6 100f
+R7 N009 6 2G
+D3 N009 6 DSIONN temp=27
+D7 6 N009 DSIOFFN temp=27
+G2 0 N009 0 VDH 90n
+C2 7 N009 .035f
+D1 N007 5 DSIOFFP temp=27
+D15 5 N007 DSIONP temp=27
+R1 5 N007 2G
+C15 N007 7 .04f
+A2 VDH 0 0 0 0 0 N009 0 OTA g=30n asym isource=0 isink=-100n Vlow=-1e308 Vhigh=1e308 Cout=.05f
+A3 VDH 0 0 0 0 0 N007 0 OTA g=40n asym isource=100n isink=0 Vlow=-1e308 Vhigh=1e308 Cout=.08f
+C5 3 2 .2p
+C6 3 1 .2p
+D2 3 2 DBIAS
+D4 3 1 DBIAS
+D6 1 2 DBIASC
+D9 5 6 DP3
+C12 5 3 2p
+G3 0 N007 0 VDH 90n
+.model DLAT D(Ron=1 Roff=10k Vfwd=1 Vrev=1 epsilon=.9 revepsilon=.9)
+.model DILIMU D(Ron=3 Roff=100k Vfwd=130m ilimit=30m epsilon=50m)
+.model DILIMD D(Ron=3 Roff=100k Vfwd=130m ilimit=40m epsilon=50m)
+.model DSIONN D(Is=1e-30 N=2 TT=8e-10)
+.model DSIOFFN D(Is=1e-10 N=1 TT= 1.1e-9)
+.model DSIONP D(Is=1e-30 N=2 TT=3e-10)
+.model DSIOFFP D(Is=1e-10 N=1 TT=1.1e-9)
+.model NI VDMOS(Vto=100m kp=600m mtriode= .1 rds=10k)
+.model PI VDMOS(Vto=-100m Kp=300m  mtriode=.1 rds=10k pchan)
+.model DP1  D(Ron=100 Roff=1Meg Vfwd=1 ilimit=1m epsilon=.1)
+.model DP2  D(Ron=100 Roff=1Meg Vfwd=1 ilimit=1.9m epsilon=.1)
+.model DP3 D(Ron=100 Roff=1Meg Vfwd=1 ilimit=2.23m epsilon=.1)
+.model DBIAS D(Ron=1k Roff=10G Vfwd=1 epsilon=.1 ilimit=2.5u)
+.model DBIASC D(Ron=10k Roff=10G Vfwd= 1u Vrev=1u
++ epsilon=10u revepsilon=10u ilimit=2.5u revilimit=2.5u)
+.ends LT1715
+*
+.subckt LT1716 1 2 3 4 5
+B1 0 N002 I=10u*dnlim(uplim(V(1),V(4)+44,.1), V(4)-.6,.1)+1n*V(1)-370p
+B2 N002 0 I=10u*dnlim(uplim(V(2),V(4)+44.1,.1), V(4)-.61, .1)+1n*V(2)
+C1 N002 0 1f Rpar=100K noiseless
+A1 0 N002 0 0 0 0 N009 0 OTA g=11m iout=1.1m Vlow=-1e308 Vhigh=1e308 Cout=1p
+C5 3 5 5p
+C6 5 4 5p
+D5 0 N009 DLAT
+C4 2 4 .1p
+C10 1 4 .1p
+C11 3 2 .1p
+C12 3 1 .1p
+D2 2 1 DBIASC
+D6 3 1 DBIAS
+D9 3 2 DBIAS
+M1 5 N008 N011 N011 N temp=27
+D7 N011 4 DOUTN2
+D8 N011 4 DOUTN1
+D10 3 N003 DOUTP
+D11 4 N007 XD
+C2 5 N008 2.3e-16 Rser=1G
+D15 N008 N007 DASYM
+R2 N008 4 100G
+C7 N008 0 1e-16
+G2 4 N007 0 N009 55n
+C8 N007 4 40f
+GP1 3 4 N011 4 100µ
+C9 N011 4 1p Rpar=100Meg
+C13 3 N003 1p
+D3 3 5 DTRICKLE
+SW1 4 N004 5 4 SPFB
+M3 5 N004 N003 N003 P temp=27
+D12 3 N004 DLIMP
+C3 3 N004 1p Rpar=10Meg
+D4 4 5 DSI temp=27
+D1 3 4 DP
+.model DP D(Ron=10k Roff=1G Vfwd=2 epsilon=.1 ilimit=34.4u)
+.model DBIAS D(Ron=1k Roff=10G Vfwd=0 epsilon=.1 ilimit=1.75n)
+.model DBIASC D(Ron=10Meg Roff=10G Vfwd= 1u Vrev=1u
++ epsilon=10u revepsilon=10u ilimit=1.75n revilimit=1.75n)
+.model XD D(Ron=1k Roff=1G Vfwd=2.5 Vrev=2.5 epsilon=.1 revepsilon=.1)
+.model DLAT D(Ron=100 Roff=10k Vfwd=1 Vrev=1.3 epsilon=.9 revepsilon=1.2)
+.model N VDMOS(Vto=100m kp=63m  rds=200Meg)
+.model DOUTN1 D(Vfwd=15m  Ron=500 Roff=100k epsilon=10m)
+.model DOUTN2 D(Vfwd=75m Ron=90 Roff=100k epsilon=20m)
+.model DSI D(cjo=70p  m=.5 vj=1 is=1e-30 n=5)
+.model DASYM D(Ron=2.5G Roff=2G Vfwd=0 epsilon=100m)
+.model SPFB sw(Ron=10Meg Roff=10G vt=.2 vh=-.05)
+.model DTRICKLE D(Ron=1k Roff=50Meg Vfwd=.5 ilimit=5.5u epsilon=.1)
+.model P VDMOS(Vto=-20m kp=18m rds=100Meg pchan)
+.model DLIMP D(Vfwd=.26 Ron=10k Roff=1G epsilon=.1)
+.model DOUTP D(Vfwd=29m Ron=1.6k Roff=1G epsilon=10m)
+.ends LT1716
+*
+* IN+ IN- V+ V- OUT SHDN SHDNREF
+.SUBCKT LT1794 1 2 3 4 5 8 9
+* input stage
+GSW1 2 119 POLY(2) 812 99 2 119 0 0 1e-12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.56e-6
+GSW2 1 119 POLY(2) 813 99 1 119 0 0 1e-12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.56e-6
+RGSW1 2 119 1.0e+11
+RGSW2 1 119 1.0e+12
+CIN 1 119 3e-13
+CIC1 1 99 2.7e-12
+CIC2 119 99 2.7e-12
+GRIN 1 119 1 119 1e-12
+Q1 11 119 13 Q1
+Q2 12 111 14 Q2
+*************************
+* phantom supply of diff. pair
+*RC1 3 11 3.6748e+2
+*RC2 3 12 3.6748e+2
+EPAIR 133 4 3 4 1.0
+RC1 133 11 367.48
+RC2 133 12 367.48
+*************************
+RE1 10 13 77.382
+RE2 10 14 77.382
+C1 11 12 2.069e-12
+*
+**********************************
+* slew rate incl. bias control
+IEE 350 4 DC 5.1427e-3
+GSR 350 4 11 12 9.1209e-5
+RIE 350 4 1000
+SIE 350 4 812 99 Sshdn
+.MODEL Sshdn VSWITCH(RON=1 ROFF=1E12 VON=-0.5 VOFF=-4.5)
+GIE 4 10 POLY(2) 350 4 365 99 0 1.0E-3 0 0 3.874E-4
+***********************************
+*
+D1 4 10 DX
+GA 60 99 11 12 2.7212e-3
+*
+* noise sources
+FRI1 99 1 VRI1 1
+VRI1 101 0 DC 0
+RRI1 101 0 26449
+FRI2 99 2 VRI2 1
+VRI2 201 0 DC 0
+RRI2 201 0 26449
+GR 99 60 605 606 4.3573
+IR1 0 605 DC 1
+IR2 0 606 DC 1
+DR1 605 0 DR
+DR2 606 0 DR
+*
+* common mode rejection
+GCM1 99 20 POLY(2) 1 99 119 99 0 5.0e-4 5.0e-4
+RCM1 21 99 1.0e+3
+RCM2 20 99 1.0e+6
+LCM 20 21 1.9768e-3
+ECM 111 1 20 99 1.7783e-5
+*
+* frequency shaper
+RP1 60 99 1.0e+4
+CP1 60 99 2.6526e-13
+GP1 99 61 60 99 1.0e-4
+RP2 61 99 1.0e+4
+CP2 61 99 2.6526e-13
+GP2 99 6 61 99 1.0e-4
+*
+* output stage
+R2 6 99 1.0e+3
+*
+*************************************
+* 1st pole incl. bias control
+C2 6 37 7.7e-12
+RSC2 37 7 0.01
+GC2 6 7 POLY(2) 37 7 365 99 0 0 0 0 146
+**************************************
+*
+GB 7 99 6 99 398.95
+R01 7 99 1.3741
+R02 7 50 1.0e-1
+R03 50 51 0.36277
+GSW3 51 5 POLY(2) 812 99 51 5 0 0 1e-9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
++ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.56e-6
+RGSW3 51 5 1.0e+10
+R04 5 99 5.9379e+9
+VC 53 50 DC 0.892
+VE 54 50 DC -0.892
+DC1 53 55 DVC
+DC2 55 56 DVC
+DE1 57 54 DVC
+DE2 58 57 DVC
+GVC1 3 56 3 56 1.0E-4
+GVE1 4 58 4 58 1.0E-4
+GVC2 3 55 3 55 1.0E-5
+GVE2 4 57 4 57 1.0E-5
+*GVLP 99 60 56 3 1.0
+*GVLN 99 60 58 4 1.0
+GVLP 99 6 56 3 1.0
+GVLN 99 6 58 4 1.0
+ECLP 91 0 7 50 13.131
+ECLN 92 0 7 50 13.116
+DCLP 91 90 DX
+DCLN 90 92 DX
+VLIM 90 0 DC 0
+FB 7 99 VLIM 41.598
+*
+********************************
+* output clamp diodes
+DCLAMP1 5 3 DX
+DCLAMP2 4 5 DX
+********************************
+*
+* supply characteristic
+EGND 99 0 POLY(2) 3 0 4 0 0 0.5 0.5
+*
+***********************************
+* bias control of quiescent current
+FIP 3 4 POLY(1) VSHDN 1.0E-4 39
+***********************************
+*
+GPC 31 0 7 50 1.0e+1
+DPC1 3 31 DVC
+DPC2 32 4 DVC
+RPC1 31 32 1.0E6
+RPC2 31 33 9.7531
+EPC 33 32 3 4 1.0
+*
+**********************************
+* internal biasing circuit
+* as shown in datasheet
+RSHDN1 8 360 1600
+DSHDN1 360 361 DX
+DSHDN2 361 9 DX
+Q3 362 361 360 QSHDN
+RSHDN2 362 363 800
+Q4 364 9 363 QSHDN
+VSHDN 364 99 DC 0
+* decoupled scaling factor
+* Rshdn=24.9K => factor=0.0
+* Rshdn=136K => factor=1.0
+FSHDN 365 99 POLY(1)VSHDN -217.94E-6 1.0
+RSHDN3 365 99 5693.4
+DSHDN3 366 365 DX
+VSHDN2 366 99 DC 0.6
+IREF 99 801 DC 4.2e-4
+RREF 801 99 1.0e+3
+GDIS 99 803 8 801 -1.2e-2
+RDIS3 803 99 1.0e+4
+VDIS2 804 99 DC -8.0e-2
+VDIS3 805 99 DC -4.921
+DDIS2 803 804 DVC
+DDIS3 805 803 DVC
+EDIS 810 99 803 99 1.0
+RDIS5 810 812 7222.2
+RDIS6 812 811 2913.4
+DDIS4 811 810 DVC
+CDIS3 812 99 1.0e-9
+EDIS2 813 99 POLY(1) 812 99 -5.0 -1.0
+RDIS7 813 99 1.0e+6
+.MODEL DX D(IS=8.2592e-16 RS=0 XTI=1 CJO=0 IBV=1e-10 TT=0)
+.MODEL DVC D(IS=8.2592e-16 RS=0 XTI=-2.1 N=0.1 EG=0.1 CJO=0 IBV=1e-10 TT=0)
+.MODEL Q1 NPN(IS=9.807e-16 BF=18141.6 XTB=-2.6591 XTI=2.96146 KF=5.1213e-15)
+.MODEL Q2 NPN(IS=1.0197e-15 BF=54424.7 XTB=-4.9531 XTI=3.03854 KF=5.1213e-15)
+.MODEL QSHDN PNP(IS=1.3E-15 BF=500)
+.MODEL DR D(IS=8.2592e-16 KF=1.3365e-18 RS=0 XTI=1 CJO=0 IBV=1e-10 TT=0)
+.ENDS LT1794
+*
+.subckt LT1970 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19
+A1 0 N008 N007 0 0 0 N009 0 OTA g=150u Iout=16.2u Cout=10p en=15n enk=4 Vhigh=1e308 Vlow=-1e308
+A2 8 9 0 0 0 0 0 0 OTA g=0 in=3p ink=70
+C2 N008 0 .5p Rpar=100K noiseless
+R1 7 N009 50Meg noiseless
+R2 N009 1 50Meg noiseless
+C7 19 3 .2p Rpar=200k noiseless
+B1 0 N008 I=10u*dnlim(uplim(V(9),V(7)-1.3,.1), V(1)+.4, .1)+1n*V(9)
+B2 N008 0 I=10u*dnlim(uplim(V(8),V(7)-1.299,.1), V(1)+.399, .1)+1n*V(8)
+C9 7 9 .5p Rpar=2Meg noiseless
+G1 0 N013 4 5 10m
+R6 N013 0 1K
+A4 N013 N015 N007 0 0 0 N014 0 OTA g=2.5m Isrc=100n Isink=-170u asym Vhigh=1e308 Vlow=-1e308
+B3 0 N015 I=1m*dnlim(V(13,14), 40m, 10m)
+R10 N015 0 1K
+A3 N013 N018 N007 0 0 0 N017 0 OTA g=2.5m Isrc=170u Isink=-100n asym Vhigh=1e308 Vlow=-1e308
+B4 0 N018 I=-1m*dnlim(V(12,14), 40m, 10m)
+R9 N018 0 1K
+C1 12 14 1p
+C3 13 14 1p
+C11 4 14 1p
+C12 6 14 1p
+S1 17 14 N017 N009 Ilim
+S2 16 14 N009 N014 Ilim
+C13 15 14 1p
+A6 15 14 0 0 0 0 N007 0 SCHMITT Vt=1 Vh=1m Tau=500n
+C14 5 14 1p
+C15 17 14 1p
+C16 16 14 1p
+C18 N014 N009 10p Rpar=8K
+C17 N017 N009 10p Rpar=8K
+A5 13 12 N007 0 0 0 4 0 OTA G=55u Iout=250u Vhigh=1e308 Vlow=-1e308
+D2 1 12 200nA
+D3 1 13 200nA
+C4 9 1 .5p Rpar=2Meg noiseless
+C6 8 1 .5p Rpar=2Meg noiseless
+C10 7 8 .5p Rpar=2Meg noiseless
+C5 8 9 1p Rpar=106K noiseless
+M1 19 N006 3 3 N temp=27
+M2 2 N012 3 3 P temp=27
+D1 N006 3 Y
+D4 3 N012 Y
+A7 N005 0 N009 N009 N009 N009 N006 N009 SCHMITT Vt=.5 Vh=10m Vhigh=0 Vlow=-20 Rout=100k Cout=1p
+A8 N005 0 N009 N009 N009 N012 N009 N009 SCHMITT Vt=.5 Vh=10m Vhigh=20 Vlow=0 Rout=100k Cout=1p
+C19 3 N009 50f Rser=100k noiseless
+G2 N009 0 N009 7 100m dir=1 vto=.01
+G3 0 N009 1 N009 100m dir=1 vto=.01
+S3 7 1 N007 0 swPow
+S4 7 8 N007 0 sbias
+S5 7 9 N007 0 sbias
+C8 3 2 .2p Rpar=200k noiseless
+A9 N007 0 0 0 0 0 N005 0 BUF Trise=100n Tfall=5u
+R7 6 5 1K
+.model Ilim SW(Ron=100 Roff=1G Vt=50m Vh=-5m)
+.model 200nA D(Ron=2Meg Ilimit=200n epsilon=.6)
+.model Sbias SW(level=2 Ron=10k Roff=1G Vt=.5 Vh=-.1 ilimit=160n noiseless)
+.model SwPow  SW(level=2 Ron=1k Roff=95k ilimit=3m Vt=.5 Vh=-.1 noiseless)
+.model Y D(Ron=100 Roff=1T Vfwd=1.455 epsilon=.1 noiseless)
+.model N VDMOS(Vto=-110m Kp=650m rds=200k)
+.model P VDMOS(Vto=110m Kp=650m rds=200k pchan)
+.ends LT1970
+*
+.subckt LT1991 1 2 3 4 5 6 7 8 9 10
+B1 0 N006 I=10u*dnlim(uplim(V(VINP),V(7)-1.1,.1), V(4)+.9, .1)+1n*V(VINP)
+B2 N006 0 I=10u*dnlim(uplim(V(VINM),V(7)-1.09,.1), V(4)+.89, .1)+1n*V(VINM)
+C6 7 VINP .5p Rpar=4T noiseless
+C7 VINP 4 .5p noiseless Rpar=4T
+C8 VINM 4 .5p Rpar=4T noiseless
+C9 7 VINM .5p Rpar=4T noiseless
+A2 0 N006 0 0 0 0 N008 0 OTA g=5m iout=145u cout=1.2n en=16n enk=5 Vhigh=1e308 Vlow=-1e308
+C10 N006 0 2f Rpar=100K noiseless
+M1 7 N005 6 6 N temp=27
+M2 4 N005 6 6 P temp=27
+C1 N005 0 3.2p Rpar=1Meg noiseless
+C3 7 6 .5p
+C4 6 4 .5p
+D5 N005 6 YU
+D6 6 N005 YD
+G1 0 N005 N008 0 1µ
+D2 7 4 DP
+R1 VINM 10 450k
+R6 7 N008 1G noiseless
+R12 N008 4 1G noiseless
+G2 N008 0 N008 7 500m dir=1 vto=-50m
+G3 0 N008 4 N008 500m dir=1 vto=-50m
+R13 7 4 833k noiseless
+R2 VINP 1 450k
+C2 6 VINM 4p Rpar=450k
+A1 VINM VINP 0 0 0 0 0 0 OTA g=0 in=45f ink=5
+R3 VINM 9 150k
+R4 VINM 8 50k
+R5 VINP 2 150k
+R7 VINP 3 50k
+C11 VINP 5 4p Rpar=450k
+D1 VINP 4 DBIAS
+D3 VINM 4 DBIAS
+C12 9 4 10f
+C13 10 4 10f
+C14 8 4 10f
+C15 1 4 10f
+C16 4 2 10f
+C17 4 3 10f
+.model X D(Ron=1K Roff=100G Vfwd=-.95 epsilon=1.0 noiseless)
+.model YU D(Ron=500 Roff=1T Vfwd=.55 epsilon=0.1 noiseless)
+.model YD D(Ron=500 Roff=1T Vfwd = .75 epsilon=0.1 noiseless)
+.model N VDMOS(Vto=-35m Kp=70m)
+.model P VDMOS(Vto=35m Kp=70m pchan)
+.model DP D(Ron=1k Roff=1T Vfwd=0.7 ilimit=51.12u noiseless)
+.model DBIAS D(Ron=1k Roff=1T Vfwd=.7 ilimit=2.5n noiseless)
+.ends LT1991
+*
+.subckt LT1996 1 2 3 4 5 6 7 8 9 10
+B1 0 N006 I=10u*dnlim(uplim(V(VINP),V(7)-1.1,.1), V(4)+.9, .1)+1n*V(VINP)
+B2 N006 0 I=10u*dnlim(uplim(V(VINM),V(7)-1.09,.1), V(4)+.89, .1)+1n*V(VINM)
+C6 7 VINP .5p Rpar=4T noiseless
+C7 VINP 4 .5p noiseless Rpar=4T
+C8 VINM 4 .5p Rpar=4T noiseless
+C9 7 VINM .5p Rpar=4T noiseless
+A2 0 N006 0 0 0 0 N008 0 OTA g=5m iout=145u cout=1.2n en=16n enk=5 Vhigh=1e308 Vlow=-1e308
+C10 N006 0 2f Rpar=100K noiseless
+M1 7 N005 6 6 N temp=27
+M2 4 N005 6 6 P temp=27
+C1 N005 0 3.2p Rpar=1Meg noiseless
+C3 7 6 .5p
+C4 6 4 .5p
+D5 N005 6 YU
+D6 6 N005 YD
+G1 0 N005 N008 0 1µ
+D2 7 4 DP
+R1 VINM 10 50k
+R6 7 N008 1G noiseless
+R12 N008 4 1G noiseless
+G2 N008 0 N008 7 500m dir=1 vto=-50m
+G3 0 N008 4 N008 500m dir=1 vto=-50m
+R13 7 4 833k noiseless
+R2 VINP 1 50k
+C2 6 VINM 4p Rpar=450k
+A1 VINM VINP 0 0 0 0 0 0 OTA g=0 in=45f ink=5
+R4 VINM 8 5.555555555555556k
+C11 VINP 5 4p Rpar=450k
+D1 VINP 4 DBIAS
+D3 VINM 4 DBIAS
+C12 9 4 10f
+C13 10 4 10f
+C14 8 4 10f
+C15 1 4 10f
+C16 4 2 10f
+C17 4 3 10f
+R3 VINM 9 16.6666666666667k
+R5 VINP 3 5.555555555555556k
+R7 VINP 2 16.6666666666667k
+.model X D(Ron=1K Roff=100G Vfwd=-.95 epsilon=1.0 noiseless)
+.model YU D(Ron=500 Roff=1T Vfwd=.55 epsilon=0.1 noiseless)
+.model YD D(Ron=500 Roff=1T Vfwd = .75 epsilon=0.1 noiseless)
+.model N VDMOS(Vto=-35m Kp=70m)
+.model P VDMOS(Vto=35m Kp=70m pchan)
+.model DP D(Ron=1k Roff=1T Vfwd=0.7 ilimit=51.12u noiseless)
+.model DBIAS D(Ron=1k Roff=1T Vfwd=.7 ilimit=2.5n noiseless)
+.ends LT1996
+*
+* Pinout: IN GND OUT FB
+.SUBCKT LT6650 104 103 6 102
+CG1 118 0 5.0E-2
+CILIM 107 0 10p
+CREF 116 4 10p
+DILIM1 107 105 DSW
+DILIM2 106 107 DSW
+DPWR1 111 109 DSW
+DPWR2 110 103 DSW
+DVLIM1 114 115 DSW
+EVCC 7 0 104 0 1
+EVEE 4 0 103 0 1
+G1 0 118 116 102 35332.9
+GILIM1 0 105 121 6 1E4
+GILIM2 0 106 121 6 1E4
+GILIMO 118 0 107 0 0.01
+GITMPCO 104 103 113 0 1.2E-7
+GLINE 0 116 7 4 6.0E-5
+GLOAD 0 116 121 6 2.0
+GNOISE 0 116 108 0 1
+GOUT1 0 121 118 0 2.5E-3
+GPWR1 109 0 121 6 10
+GPWR2 110 0 121 6 10
+GTEMP 0 116 113 112 1.2E-5
+GVLIM2 0 114 104 111 5.0E+9
+GVLIM3 114 0 7 121 1000
+GVLIMO 116 0 115 0 1000
+IDUM1 0 108 0
+IFB 102 0 1.2E-9
+IILIM1 0 105 9.0
+IILIM2 106 0 5.0
+ITEMP 0 113 1
+ITYP 104 103 5.6E-6
+IVLIM2 0 114 1.0E+2
+IVOPT 0 116 4.0E-1
+RG1 118 0 0.159155
+RILIM1 105 0 1
+RILIM2 106 0 1
+RILIM3 107 0 1
+RNOISE 108 0 33967400
+ROUT1 121 4 4.0E+2
+RPWR1 109 7 1E3
+RPWR2 110 4 1E3
+RPWRS 111 104 1E-4
+RREF 116 4 1
+RSENSE 6 121 0.1
+RTEMP 113 0 101 TC1=1m
+RVLIM2 114 0 1
+RVLIM3 115 0 1
+VDUM1 0 112 1
+.MODEL DSW D(IS=1E-10 RS=0 KF=0 XTI=0)
+.ENDS LT6650
+*
+* LT6700_LIB1 IN+ IN- VCC VEE OUT REF
+.SUBCKT LT6700_LIB1 3 2 7 4 6 131
+CDUM1 139 4 0.01p
+CDUM2 4 3 0.01p
+CIBIAS1 111 0 10p
+CIBIAS2 110 0 10p
+CLATCH1 141 0 10p
+CPROP 136 0 2.0E-5
+CRF1 128 0 2.2E-6
+DHYST1 107 108 DSW
+DHYST2 107 137 DSW
+DILIM1 113 115 DSW
+DILIM2 115 114 DSW
+DOC1 122 123 DSW
+DOC2 122 121 DSW
+DPROP1 124 0 DIODE
+DPROP2 0 124 DIODE
+DPWR1 146 125 DSW
+DPWR2 126 101 DSW
+DVLIMOC1 119 143 DVLIM
+EGND 102 0 101 0 1
+EHYST1 108 0 117 0 1E5
+EIBIAS1 112 0 3 2 100
+EILIM1 116 0 115 0 -100
+EIN 140 0 117 0 1
+EINCM1 105 0 3 0 1
+EINCM2 106 0 2 0 1
+ELDO2 119 0 101 120 1
+EOC1 0 121 136 0 10
+EOM 145 0 144 0 1
+EREF1 131 0 135 127 1
+EVCC1 133 0 7 0 1
+EVEE1 135 0 4 0 1
+EVS 147 0 146 0 1
+GCMRR 0 117 138 142 1.0E-5
+GHYST2 0 124 137 0 1
+GIBIAS1 3 0 110 0 1E-6
+GIBIAS2 2 0 111 0 1E-6
+GILIM1 0 113 143 118 1E4
+GILIM2 114 0 118 143 1E4
+GIN 0 117 3 139 1
+GOUTOC 143 0 128 116 1
+GPROP 0 124 141 0 1.0E+5
+GPSRRN 0 117 4 142 1.0E-5
+GPSRRP 0 117 7 142 1.0E-5
+GPWRO1 125 0 143 118 10
+GPWRO2 126 0 143 118 10
+GRF1 0 128 123 0 2.2
+IHYST2 0 107 3.5E+2
+IIBIAS 0 109 1.0E-3
+ILIM1 113 0 5.0
+ILIM2 0 114 4.0E+1
+IOC1 0 122 5.0E-3
+IOS 3 2 1e-12
+ITYP1 7 0 5.7E-6
+ITYP2 0 4 5.7E-6
+IVOS 0 117 5.0E-4
+RDUMOC 130 118 0.001
+RHYST2 107 0 1k
+RHYST3 137 0 1
+RIBIAS1 111 0 1
+RIBIAS2 110 0 1
+RIBIAS3 109 111 10k
+RILIM1 115 0 1
+RILIM2 113 0 1
+RILIM3 114 0 1
+RILIMOC 118 143 0.1
+RIN 117 0 1
+RINCM1 138 105 1
+RINCM2 106 138 1
+RLATCH0 141 140 1E-4
+RLATCH1 141 0 1
+RMID1 142 133 1
+RMID2 135 142 1
+ROC1 123 0 10
+ROC2 122 0 10k
+RPROP1 124 0 1
+RPROP2 136 124 1.307
+RPWR1 125 147 1E3
+RPWR2 126 102 1E3
+RRF1 128 0 0.4545
+RSHD7 130 6 1E-4
+RVCC 7 146 1E-4
+RVEE 4 101 1E-4
+RVNOI 139 2 6038.65
+RVOM1 144 147 1
+RVOM2 102 144 1
+SIBIAS1 110 109 112 0 SWBIAS
+VLDO2 0 120 1.5107
+VREF1 0 127 4.0E-1
+.MODEL SWHYST VSWITCH(ROFF=1E5 RON=1E-4 VON=1 VOFF=-1)
+.MODEL SWLATCH VSWITCH(ROFF=1E7 RON=1E-4 VON=1.80 VOFF=2.20)
+.MODEL SWLATCHX VSWITCH(ROFF=1E7 RON=1E-4 VON=2.20 VOFF=1.80)
+.MODEL SWBIAS VSWITCH(ROFF=1E7 RON=1E-4 VON=2 VOFF=-2)
+.MODEL SHDN VSWITCH(ROFF=1G RON=0.1 VON=1.80 VOFF=2.00)
+.MODEL SHDNX VSWITCH(ROFF=1E7 RON=0.001 VON=2.00 VOFF=1.80)
+.MODEL SHDNO VSWITCH(ROFF=1000000.00 RON=0.001 VON=1.80 VOFF=2.00)
+.MODEL SHDNOX VSWITCH(ROFF=1000000.00 RON=0.001 VON=2.00 VOFF=1.80)
+.MODEL DSW D(IS=1E-10 RS=0 XTI=0 KF=0)
+.MODEL DIODE D(IS=1E-18 KF=0 XTI=0 RS=1E-8)
+.MODEL DVLIM D(IS=1E-24 KF=0 RS=0 XTI=0)
+.ENDS LT6700_LIB1
+*
+* Pinout OUTA GROUND +INA -INB VS OUTB
+.SUBCKT LT6700-1 1 2 3 4 5 6
+X1 3 100 5 2 1 100 LT6700_LIB1
+X2 100 4 5 2 6 101 LT6700_LIB1
+RD1 101 0 1E6
+.ENDS LT6700-1
+*
+* Pinout OUTA GROUND -INA -INB VS OUTB
+.SUBCKT LT6700-2 1 2 3 4 5 6
+X1 100 3 5 2 1 100 LT6700_LIB1
+X2 100 4 5 2 6 101 LT6700_LIB1
+RD1 101 0 1E6
+.ENDS LT6700-2
+*
+* Pinout OUTA GROUND +INA +INB VS OUTB
+.SUBCKT LT6700-3 1 2 3 4 5 6
+X1 3 100 5 2 1 100 LT6700_LIB1
+X2 4 100 5 2 6 101 LT6700_LIB1
+RD1 101 0 1E6
+.ENDS LT6700-3
+*
+* LPWR SUMA INVINA LPOUTA AGND V- ENB SUMB INVINB LPOUTB V+
+.SUBCKT LTC1563-2 100 2 4 6 7 8 9 11 13 15 16
+C1A 4 6 53.85P
+C1B 13 15 39.17P
+C2B 11 12 87.97P
+C2A 2 10 64.24P
+RI6 6 19 50K
+RI18 15 14 50K
+RI7 19 10 40K
+RI9 14 12 40K
+CPARA 2 0 4.5p
+CPARB 11 0 4.5p
+RI20 17 7 20K
+RI19 7 18 20K
+XI26 7 4 8 16 6 1 9 OPAMP1563
+XI25 7 13 8 16 15 1 9 OPAMP1563
+XI24 7 14 8 16 12 1 9 OPAMP1563
+XI23 7 19 8 16 10 1 9 OPAMP1563
+XS2 9 18 8 SwitchA2
+XS1 9 16 17 SwitchA2
+Rmike 1 7 1G
+.subckt OpAmp1563 1 2 11 12 25 100 9
+M1 7 3 5 5 P L=3E-6 W=1200E-6
+M2 6 2 5 5 P L=3E-6 W=1200E-6
+RI1 7 11 1.6k
+RI2 6 11 1.6k
+G1 12a 5a POLY(1) (12,11) 15E-6 1E-6 ;LP
+G2 12bb 5bb POLY(1) (12,11) 65E-6 8E-6 ;HS
+XSW1 3a 12 12a SwitchA2
+XSW2 3a 12 12b SwitchB
+XSW3 3a 12a 0 SwitchB
+XSW4 3a 12b 0 SwitchA2
+XSW5 3a 5a 5 SwitchA2
+XSW6 3a 5b 5 SwitchB
+XSW7 3a 5a 0 SwitchB
+XSW8 3a 5b 0 SwitchA2
+XSW9 9 12b 12bb SwitchA2
+XSW10 9 12bb 0 SwitchB
+XS11 9 5bb 5b SwitchA2
+XS12 9 5bb 0 SwitchB
+V1 12 4 .75
+D1 5 4 DX
+Rn 3 10 700
+EVOS 10 1 POLY(2) (17,15) (19,15) -.70m 1 1
+XI10 N_3 N_2 11 12 3a 2inor
+XI8 100 12 N_2 SWITCHN
+XI9 9 12 N_3 SWITCHN
+RI6 N_2 11 10meg
+RI7 N_3 11 10meg
+ECM 16 15 POLY(2) (0,15) (2,15) 0 .35 .35
+RCM1 16 17 70E3
+RCM2 17 15 10
+CCM 16 17 6.43E-12
+RPS1 18 19 4.5E3
+RPS2 19 15 1
+CPS 18 19 100p
+EPS 18 0 POLY(1) (12,11) 0 1
+E2 15 0 POLY(2) (12,0) (11,0) 0 .5 .5
+GIS1 11a 11c (12,11) .035m
+GIS2 11bb 11dd (12,11) .2m
+XSW11 3a 12 11a SwitchA2
+XSW12 3a 12 11b SwitchB
+XSW13 3a 11c 11 SwitchA2
+XSW14 3a 11d 11 SwitchB
+XSW15 3a 11a 0 SwitchB
+XSW16 3a 11b 0 SwitchA2
+XSW17 3a 11c 0 SwitchB
+XSW18 3a 11d 0 SwitchA2
+XSW19 9 11bb 11b SwitchA2
+XSW20 9 11bb 0 SwitchB
+XS21 9 11dd 11d SwitchA2
+XS22 9 11dd 0 SwitchB
+E1a 13a 15a POLY(1) (7,6) 0 4
+E1b 13bb 15bb POLY(1) (7,6) 0 8 ;HS gain
+R1 13 14 5E+3
+C1a 14a 14c 13.5E-12
+C1b 14bb 14dd 2E-12
+XSW21 3a 13 13a SwitchA2
+XSW22 3a 13 13b SwitchB
+XSW23 3a 15a 15 SwitchA2
+XSW24 3a 15b 15 SwitchB
+XSW25 3a 13a 0 SwitchB
+XSW26 3a 15a 0 SwitchB
+XSW27 3a 13b 0 SwitchA2
+XSW28 3a 15b 0 SwitchA2
+XS29 9 13b 13bb SwitchA2
+XS30 9 13bb 0 SwitchB
+XS31 9 15bb 15b SwitchA2
+XS32 9 15bb 0 SwitchB
+XS33 9 14b 14bb SwitchA2
+XS34 9 14bb 0 SwitchB
+XS35 9 14dd 14d SwitchA2
+XS36 9 14dd 0 SwitchB
+XSW29 3a 14 14a SwitchA2
+XSW30 3a 14 14b SwitchB
+XSW31 3a 14c 15 SwitchA2
+XSW32 3a 14d 15 SwitchB
+XSW33 3a 14a 0 SwitchB
+XSW34 3a 14b 0 SwitchA2
+XSW35 3a 14c 0 SwitchB
+XSW36 3a 14d 0 SwitchA2
+M3 25 23 12 12 P L=3E-6 W=1400E-6
+M4 25 24 11 11 N L=3E-6 W=840E-6
+M5 23 23 12 12 P L=6E-6 W=.35E-6
+M6 24 24 11 11 N L=6E-6 W=.21E-6
+GM5a 23a 23c POLY(2)(12,11)(15,14) 8e-9 2.1E-9 1.08E-4 ;LP
+GM6a 12a 12c POLY(2)(12,11)(14,15) 8e-9 2.1E-9 1.08E-4 ;LP
+GM5b 23bb 23dd POLY(2)(12,11)(15,14) 5e-8 2.24E-8 1.08E-4 ;HS
+GM6b 12bb 12dd POLY(2)(12,11)(14,15) 5e-8 2.24E-8 1.08E-4 ;HS
+CO1 25 23 17E-12
+CO2 25 24 17E-12
+XSW37 3a 23 23a SwitchA2
+XSW38 3a 23c 11 SwitchA2
+XSW39 3a 23 23b SwitchB
+XSW40 3a 23d 11 SwitchB
+XSW41 3a 23a 0 SwitchB
+XSW42 3a 23b 0 SwitchA2
+XSW43 3a 23c 0 SwitchB
+XSW44 3a 23d 0 SwitchA2
+XSW45 9 23b 23bb SwitchA2
+XSW46 9 23bb 0 SwitchB
+XS47 9 23dd 23d SwitchA2
+XS48 9 23dd 0 SwitchB
+XSW47 3a 12 12a SwitchA2
+XSW48 3a 12c 24 SwitchA2
+XSW49 3a 12 12b SwitchB
+XSW50 3a 12d 24 SwitchB
+XSW51 3a 12a 0 SwitchB
+XSW52 3a 12b 0 SwitchA2
+XSW53 3a 12c 0 SwitchB
+XSW54 3a 12d 0 SwitchA2
+XS55 9 12b 12bb SwitchA2
+XS56 9 12bb 0 SwitchB
+XS57 9 12dd 12d SwitchA2
+XS58 9 12dd 0 SwitchB
+.MODEL DX D(IS=1E-14 RS=5)
+.MODEL P PMOS(LEVEL=2 KF=2.5E-26 KP=16E-6 VTO=-.7 LAMBDA=.001 RD=8)
+.MODEL N NMOS(LEVEL=2 KF=3.5E-28 KP=52E-6 VTO= .7 LAMBDA=.001 RD=5)
+.ENDS OpAmp1563
+.subckt switchN 1 2 3
+S1 3 2 1 0 SwN
+.model swn vswitch(Ron=1000 Roff=10E6 Von=2.2 Voff=0.5)
+.ends switchN
+.subckt switchA2 1 2 3
+S1 3 2 1 0 SwA
+.model swa vswitch(Ron=10 Roff=100E8 Von=.5 Voff=2.2)
+.ends switchA2
+.subckt switchB 1 2 3
+S1 3 2 1 0 SwB
+.model swb vswitch(Ron=10 Roff=100E8 Von=2.2 Voff=.5)
+.ends switchB
+.SUBCKT 2inor 9 100 11 12 3a
+XI25 100 12 N_1 SWITCHP
+XI27 9 N_1 QB SWITCHP
+XI26 QB 12 3a SWITCHP
+XI24 100 QB 11 SWITCHN
+XI23 9 QB 11 SWITCHN
+XI22 QB 3a 11 SWITCHN
+.ENDS 2inor
+.subckt switchP 1 2 3
+S1 3 2 1 0 Swp
+.model swp vswitch(Ron=1000 Roff=10E6 Von=0.5 Voff=2.2)
+.ends switchP
+.ENDS LTC1563-2
+*
+* LPWR SUMA INVINA LPOUTA AGND V- ENB SUMB INVINB LPOUTB V+
+.SUBCKT LTC1563-3 100 2 4 6 7 8 9 11 13 15 16
+C1A 4 6 34.96P
+C1B 13 15 26.84P
+C2B 11 12 40.35P
+C2A 2 10 38.80P
+RI6 6 19 50K
+RI18 15 14 50K
+RI7 19 10 40K
+RI9 14 12 40K
+CPARA 2 0 4.5p
+CPARB 11 0 4.5p
+RI20 17 7 20K
+RI19 7 18 20K
+XI26 7 4 8 16 6 1 9 OPAMP1563
+XI25 7 13 8 16 15 1 9 OPAMP1563
+XI24 7 14 8 16 12 1 9 OPAMP1563
+XI23 7 19 8 16 10 1 9 OPAMP1563
+XS2 9 18 8 SwitchA2
+XS1 9 16 17 SwitchA2
+Rmike 1 7 1G
+*
+.subckt OpAmp1563 1 2 11 12 25 100 9
+M1 7 3 5 5 P L=3E-6 W=1200E-6
+M2 6 2 5 5 P L=3E-6 W=1200E-6
+RI1 7 11 1.6k
+RI2 6 11 1.6k
+G1 12a 5a POLY(1) (12,11) 15E-6 1E-6 ;LP
+G2 12bb 5bb POLY(1) (12,11) 65E-6 8E-6 ;HS
+XSW1 3a 12 12a SwitchA2
+XSW2 3a 12 12b SwitchB
+XSW3 3a 12a 0 SwitchB
+XSW4 3a 12b 0 SwitchA2
+XSW5 3a 5a 5 SwitchA2
+XSW6 3a 5b 5 SwitchB
+XSW7 3a 5a 0 SwitchB
+XSW8 3a 5b 0 SwitchA2
+XSW9 9 12b 12bb SwitchA2
+XSW10 9 12bb 0 SwitchB
+XS11 9 5bb 5b SwitchA2
+XS12 9 5bb 0 SwitchB
+V1 12 4 .75
+D1 5 4 DX
+Rn 3 10 700
+EVOS 10 1 POLY(2) (17,15) (19,15) -.70m 1 1
+XI10 N_3 N_2 11 12 3a 2inor
+XI8 100 12 N_2 SWITCHN
+XI9 9 12 N_3 SWITCHN
+RI6 N_2 11 10meg
+RI7 N_3 11 10meg
+ECM 16 15 POLY(2) (0,15) (2,15) 0 .35 .35
+RCM1 16 17 70E3
+RCM2 17 15 10
+CCM 16 17 6.43E-12
+RPS1 18 19 4.5E3
+RPS2 19 15 1
+CPS 18 19 100p
+EPS 18 0 POLY(1) (12,11) 0 1
+E2 15 0 POLY(2) (12,0) (11,0) 0 .5 .5
+GIS1 11a 11c (12,11) .035m
+GIS2 11bb 11dd (12,11) .2m
+XSW11 3a 12 11a SwitchA2
+XSW12 3a 12 11b SwitchB
+XSW13 3a 11c 11 SwitchA2
+XSW14 3a 11d 11 SwitchB
+XSW15 3a 11a 0 SwitchB
+XSW16 3a 11b 0 SwitchA2
+XSW17 3a 11c 0 SwitchB
+XSW18 3a 11d 0 SwitchA2
+XSW19 9 11bb 11b SwitchA2
+XSW20 9 11bb 0 SwitchB
+XS21 9 11dd 11d SwitchA2
+XS22 9 11dd 0 SwitchB
+E1a 13a 15a POLY(1) (7,6) 0 4
+E1b 13bb 15bb POLY(1) (7,6) 0 8 ;HS gain
+R1 13 14 5E+3
+C1a 14a 14c 13.5E-12
+C1b 14bb 14dd 2E-12
+XSW21 3a 13 13a SwitchA2
+XSW22 3a 13 13b SwitchB
+XSW23 3a 15a 15 SwitchA2
+XSW24 3a 15b 15 SwitchB
+XSW25 3a 13a 0 SwitchB
+XSW26 3a 15a 0 SwitchB
+XSW27 3a 13b 0 SwitchA2
+XSW28 3a 15b 0 SwitchA2
+XS29 9 13b 13bb SwitchA2
+XS30 9 13bb 0 SwitchB
+XS31 9 15bb 15b SwitchA2
+XS32 9 15bb 0 SwitchB
+XS33 9 14b 14bb SwitchA2
+XS34 9 14bb 0 SwitchB
+XS35 9 14dd 14d SwitchA2
+XS36 9 14dd 0 SwitchB
+XSW29 3a 14 14a SwitchA2
+XSW30 3a 14 14b SwitchB
+XSW31 3a 14c 15 SwitchA2
+XSW32 3a 14d 15 SwitchB
+XSW33 3a 14a 0 SwitchB
+XSW34 3a 14b 0 SwitchA2
+XSW35 3a 14c 0 SwitchB
+XSW36 3a 14d 0 SwitchA2
+M3 25 23 12 12 P L=3E-6 W=1400E-6
+M4 25 24 11 11 N L=3E-6 W=840E-6
+M5 23 23 12 12 P L=6E-6 W=.35E-6
+M6 24 24 11 11 N L=6E-6 W=.21E-6
+GM5a 23a 23c POLY(2)(12,11)(15,14) 8e-9 2.1E-9 1.08E-4 ;LP
+GM6a 12a 12c POLY(2)(12,11)(14,15) 8e-9 2.1E-9 1.08E-4 ;LP
+GM5b 23bb 23dd POLY(2)(12,11)(15,14) 5e-8 2.24E-8 1.08E-4 ;HS
+GM6b 12bb 12dd POLY(2)(12,11)(14,15) 5e-8 2.24E-8 1.08E-4 ;HS
+CO1 25 23 17E-12
+CO2 25 24 17E-12
+XSW37 3a 23 23a SwitchA2
+XSW38 3a 23c 11 SwitchA2
+XSW39 3a 23 23b SwitchB
+XSW40 3a 23d 11 SwitchB
+XSW41 3a 23a 0 SwitchB
+XSW42 3a 23b 0 SwitchA2
+XSW43 3a 23c 0 SwitchB
+XSW44 3a 23d 0 SwitchA2
+XSW45 9 23b 23bb SwitchA2
+XSW46 9 23bb 0 SwitchB
+XS47 9 23dd 23d SwitchA2
+XS48 9 23dd 0 SwitchB
+XSW47 3a 12 12a SwitchA2
+XSW48 3a 12c 24 SwitchA2
+XSW49 3a 12 12b SwitchB
+XSW50 3a 12d 24 SwitchB
+XSW51 3a 12a 0 SwitchB
+XSW52 3a 12b 0 SwitchA2
+XSW53 3a 12c 0 SwitchB
+XSW54 3a 12d 0 SwitchA2
+XS55 9 12b 12bb SwitchA2
+XS56 9 12bb 0 SwitchB
+XS57 9 12dd 12d SwitchA2
+XS58 9 12dd 0 SwitchB
+.MODEL DX D(IS=1E-14 RS=5)
+.MODEL P PMOS(LEVEL=2 KF=2.5E-26 KP=16E-6 VTO=-.7 LAMBDA=.001 RD=8)
+.MODEL N NMOS(LEVEL=2 KF=3.5E-28 KP=52E-6 VTO= .7 LAMBDA=.001 RD=5)
+.ENDS OpAmp1563
+.subckt switchN 1 2 3
+S1 3 2 1 0 SwN
+.model swn vswitch(Ron=1000 Roff=10E6 Von=2.2 Voff=0.5)
+.ends switchN
+.subckt switchA2 1 2 3
+S1 3 2 1 0 SwA
+.model swa vswitch(Ron=10 Roff=100E8 Von=.5 Voff=2.2)
+.ends switchA2
+.subckt switchB 1 2 3
+S1 3 2 1 0 SwB
+.model swb vswitch(Ron=10 Roff=100E8 Von=2.2 Voff=.5)
+.ends switchB
+.SUBCKT 2inor 9 100 11 12 3a
+XI25 100 12 N_1 SWITCHP
+XI27 9 N_1 QB SWITCHP
+XI26 QB 12 3a SWITCHP
+XI24 100 QB 11 SWITCHN
+XI23 9 QB 11 SWITCHN
+XI22 QB 3a 11 SWITCHN
+.ENDS 2inor
+.subckt switchP 1 2 3
+S1 3 2 1 0 Swp
+.model swp vswitch(Ron=1000 Roff=10E6 Von=0.5 Voff=2.2)
+.ends switchP
+.ENDS LTC1563-3
+*
+* PINOUT: IN+ IN- VCC VEE OUT
+.SUBCKT LTC1841 3 2 7 4 6
+CDUM1 135 4 0.01p
+CDUM2 4 3 0.01p
+CHYST1 133 0 10p
+CIBIAS1 109 0 10p
+CIBIAS2 108 0 10p
+CLATCH1 137 0 10p
+COUT 6 4 1p
+CPROP 132 0 4.0E-6
+CRF1 125 0 5.0E-7
+DILIM1 111 113 DSW
+DILIM2 113 112 DSW
+DIN1 3 7 DIODE
+DIN2 2 7 DIODE
+DIN3 4 3 DIODE
+DIN4 4 2 DIODE
+DOC1 120 121 DSW
+DOC2 120 119 DSW
+DPWR1 142 123 DSW
+DPWR2 124 101 DSW
+DVLIMOC1 117 139 DVLIM
+EGAIN 122 0 137 0 316.228
+EGND 102 0 101 0 1
+EIBIAS1 110 0 3 2 100
+EILIM1 114 0 113 0 -100
+EIN 136 0 115 0 1
+EINCM1 105 0 3 0 1
+EINCM2 106 0 2 0 1
+ELDO2 117 0 101 118 1
+EOC1 0 119 132 133 0.03125
+EOM 141 0 140 0 1
+EVCC1 129 0 7 0 1
+EVEE1 131 0 4 0 1
+EVS 143 0 142 0 1
+GCMRR 0 115 134 138 1.0E-4
+GIBIAS1 3 0 108 0 1E-6
+GIBIAS2 2 0 109 0 1E-6
+GILIM1 0 111 139 116 1E4
+GILIM2 112 0 116 139 1E4
+GIN 0 115 3 135 1
+GOUTOC 139 0 125 114 1
+GPSRRN 0 115 4 138 1.0E-4
+GPSRRP 0 115 7 138 1.0E-4
+GPWRO1 123 0 139 116 10
+GPWRO2 124 0 139 116 10
+GRF1 0 125 121 0 2.2
+IIBIAS 0 107 1.0E-5
+ILIM1 111 0 5.0
+ILIM2 0 112 2.5E+1
+IOC1 0 120 3.125E-3
+IOS 3 2 1e-12
+ITYP1 7 0 3.5E-6
+ITYP2 0 4 3.5E-6
+IVOS 0 115 3.0E-3
+RDUMOC 127 116 0.001
+RHYST1 133 0 1
+RIBIAS1 109 0 1
+RIBIAS2 108 0 1
+RIBIAS3 107 109 10k
+RILIM1 113 0 1
+RILIM2 111 0 1
+RILIM3 112 0 1
+RILIMOC 116 139 0.1
+RIN 115 0 1
+RINCM1 134 105 1
+RINCM2 106 134 1
+RLATCH0 137 136 1E-4
+RLATCH1 137 0 1
+RMID1 138 129 1
+RMID2 131 138 1
+ROC1 121 0 10
+ROC2 120 0 10k
+RPROP 132 122 1.307
+RPWR1 123 143 1E3
+RPWR2 124 102 1E3
+RRF1 125 0 0.4545
+RSHD7 127 6 1E-4
+RVCC 7 142 1E-4
+RVEE 4 101 1E-4
+RVNOI 135 2 60.3865
+RVOM1 140 143 1
+RVOM2 102 140 1
+SIBIAS1 108 107 110 0 SWBIAS
+VLDO2 0 118 1.70570
+.MODEL SWHYST VSWITCH(ROFF=1E5 RON=1E-4 VON=1 VOFF=-1)
+.MODEL SWLATCH VSWITCH(ROFF=1E7 RON=1E-4 VON=1.80 VOFF=2.2)
+.MODEL SWLATCHX VSWITCH(ROFF=1E7 RON=1E-4 VON=2.20 VOFF=1.8)
+.MODEL SWBIAS VSWITCH(ROFF=1E7 RON=1E-4 VON=2 VOFF=-2)
+.MODEL SHDN VSWITCH(ROFF=1G RON=0.1 VON=1.80 VOFF=2.00)
+.MODEL SHDNX VSWITCH(ROFF=1E7 RON=0.001 VON=2.00 VOFF=1.80)
+.MODEL SHDNO VSWITCH(ROFF=1000000. RON=0.001 VON=1.80 VOFF=2.0)
+.MODEL SHDNOX VSWITCH(ROFF=1000000. RON=0.001 VON=2.00 VOFF=1.8)
+.MODEL DSW D(IS=1E-10 RS=0 XTI=0 KF=0)
+.MODEL DIODE D(XTI=0 AF=0 RS=0)
+.MODEL DVLIM D(IS=1E-24 KF=0 RS=0 XTI=0)
+.ENDS LTC1841
+*
+* PINOUT OUTA VEE INA+ INB+ HYST REF VCC OUTB
+.SUBCKT LTC1842 1 2 3 4 5 6 7 8
+X1 3 6 7 2 1 5 6 LTC1842_BASE
+X2 4 6 7 2 8 5 100 LTC1842_BASE
+;RDUM 100 0 1E6
+Rmike 5 6 1G
+.ENDS LTC1842
+*
+* PINOUT OUTA VEE INA+ INB- HYST REF VCC OUTB
+.SUBCKT LTC1843 1 2 3 4 5 6 7 8
+X1 3 6 7 2 1 5 6 LTC1842_BASE
+X2 6 4 7 2 8 5 100 LTC1842_BASE
+;RDUM 100 0 1E6
+Rmike 5 6 1G
+.ENDS LTC1843
+*
+.SUBCKT LTC1842_BASE 3 2 7 4 6 103 132
+CDUM1 140 4 0.01p
+CDUM2 4 3 0.01p
+CHYST1 138 0 10p
+CIBIAS1 112 0 10p
+CIBIAS2 111 0 10p
+CLATCH1 142 0 10p
+COUT 6 4 1p
+CPROP 137 0 4.0E-6
+CRF1 129 0 5.0E-7
+DILIM1 114 116 DSW
+DILIM2 116 115 DSW
+DIN1 3 7 DIODE
+DIN2 2 7 DIODE
+DIN3 4 3 DIODE
+DIN4 4 2 DIODE
+DOC1 123 124 DSW
+DOC2 123 122 DSW
+DPWR1 147 126 DSW
+DPWR2 127 101 DSW
+DVLIMOC1 120 144 DVLIM
+EGAIN 125 0 142 0 316.228
+EGND 102 0 101 0 1
+EHYST1 109 0 145 144 1E4
+EHYST3 108 0 132 103 379.473
+EIBIAS1 113 0 3 2 100
+EILIM1 117 0 116 0 -100
+EIN 141 0 118 0 1
+EINCM1 106 0 3 0 1
+EINCM2 107 0 2 0 1
+ELDO2 120 0 101 121 1
+EOC1 0 122 137 138 0.03125
+EOM 146 0 145 0 1
+EREF1 132 0 136 128 1
+EVCC1 134 0 7 0 1
+EVEE1 136 0 4 0 1
+EVS 148 0 147 0 1
+GCMRR 0 118 139 143 1.0E-4
+GIBIAS1 3 0 111 0 1E-6
+GIBIAS2 2 0 112 0 1E-6
+GILIM1 0 114 144 119 1E4
+GILIM2 115 0 119 144 1E4
+GIN 0 118 3 140 1
+GOUTOC 144 0 129 117 1
+GPSRRN 0 118 4 143 1.0E-4
+GPSRRP 0 118 7 143 1.0E-4
+GPWRO1 126 0 144 119 10
+GPWRO2 127 0 144 119 10
+GRF1 0 129 124 0 2.2
+IIBIAS 0 110 1.0E-5
+ILIM1 114 0 5.0
+ILIM2 0 115 2.5E+1
+IOC1 0 123 3.125E-3
+IOS 3 2 1e-12
+ITYP1 7 0 3.5E-6
+ITYP2 0 4 3.5E-6
+IVOS 0 118 3.0E-3
+RDUMOC 131 119 0.001
+RHYST1 138 0 1
+RIBIAS1 112 0 1
+RIBIAS2 111 0 1
+RIBIAS3 110 112 10k
+RILIM1 116 0 1
+RILIM2 114 0 1
+RILIM3 115 0 1
+RILIMOC 119 144 0.1
+RIN 118 0 1
+RINCM1 139 106 1
+RINCM2 107 139 1
+RLATCH0 142 141 1E-4
+RLATCH1 142 0 1
+RMID1 143 134 1
+RMID2 136 143 1
+ROC1 124 0 10
+ROC2 123 0 10k
+RPROP 137 125 1.307
+RPWR1 126 148 1E3
+RPWR2 127 102 1E3
+RRF1 129 0 0.4545
+RSHD7 131 6 1E-4
+RVCC 7 147 1E-4
+RVEE 4 101 1E-4
+RVNOI 140 2 60.3865
+RVOM1 145 148 1
+RVOM2 102 145 1
+SHYST1 138 108 109 0 SWHYST
+SIBIAS1 111 110 113 0 SWBIAS
+VLDO2 0 121 1.70570
+VREF1 0 128 1.18200
+.MODEL SWHYST VSWITCH(ROFF=1E5 RON=1E-4 VON=1 VOFF=-1)
+.MODEL SWLATCH VSWITCH(ROFF=1E7 RON=1E-4 VON=1.80 VOFF=2.2)
+.MODEL SWLATCHX VSWITCH(ROFF=1E7 RON=1E-4 VON=2.20 VOFF=1.8)
+.MODEL SWBIAS VSWITCH(ROFF=1E7 RON=1E-4 VON=2 VOFF=-2)
+.MODEL SHDN VSWITCH(ROFF=1G RON=0.1 VON=1.8 VOFF=2.0)
+.MODEL SHDNX VSWITCH(ROFF=1E7 RON=0.001 VON=2.0 VOFF=1.8)
+.MODEL SHDNO VSWITCH(ROFF=1000000 RON=0.001 VON=1.8 VOFF=2.0)
+.MODEL SHDNOX VSWITCH(ROFF=1000000 RON=0.001 VON=2.0 VOFF=1.8)
+.MODEL DSW D(IS=1E-10 RS=0 XTI=0 KF=0)
+.MODEL DIODE D(XTI=0 AF=0 RS=0)
+.MODEL DVLIM D(IS=1E-24 KF=0 RS=0 XTI=0)
+.ENDS LTC1842_Base
+*
+* OUT AGND VIN V- G0 G1 G2 V+
+.subckt LTC6910-1 OUT AGND IN 27 G0 G1 G2 VPLUS
+R2 14 IN 10K
+R10 22 IN 10K
+R9 21 IN 10K
+R8 20 IN 10K
+R7 19 IN 10K
+R5 17 IN 10K
+R4 16 IN 10K
+R3 15 IN 10K
+R1 IN 13 10K
+R6 18 IN 10K
+R11 24 23 50K
+R12 25 24 30K
+R13 26 25 10K
+R14 OUT 26 10K
+R15 VPLUS AGND 10K
+R16 AGND 27 10K
+RI71 G2A 27 100K
+RI73 G0A 27 100K
+RI72 G1A 27 100K
+XI21 6 27 VPLUS 12 inverter
+XI22 G0A 27 VPLUS 3 inverter
+XI23 G1A 27 VPLUS 2 inverter
+XI24 G2A 27 VPLUS 1 inverter
+XI18 G0A G1A G2A 27 VPLUS 9 nand3in
+XI19 G0A G1A 1 27 VPLUS 4 nand3in
+XI20 3 2 1 27 VPLUS 6 nand3in
+XI17 3 2 27 VPLUS 5 nand2in
+XI16 4 1 27 VPLUS 7 nand2in
+XI15 2 1 27 VPLUS 8 nand2in
+XI14 G1A G2A 27 VPLUS 10 nand2in
+XI13 5 G2A 27 VPLUS 11 nand2in
+C1 OUT 23 1.6PF
+XI53 AGND 23 27 VPLUS OUT OPAMP6910
+MI54 13 G2A 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI63 14 G2A 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI62 15 G2A 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI61 16 G2A 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI60 17 G2A 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI59 18 7 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI58 19 7 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI57 20 7 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI56 21 8 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI55 22 6 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI67 24 9 23 27 N L=2U W=24U AS=108P AD=108P PS=57U PD=57U
+MI66 25 10 23 27 N L=2U W=48U AS=216P AD=216P PS=105U PD=105U
+MI65 26 11 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI64 OUT 12 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+XI76 G2 VPLUS G2A SWITCHN
+XI75 G1 VPLUS G1A SWITCHN
+XI74 G0 VPLUS G0A SWITCHN
+*
+.subckt OpAmp6910 1 2 11 12 25
+M1 7 3 5 5 P L=2E-6 W=1312E-6
+M2 6 2 5 5 P L=2E-6 W=1312E-6
+RI1 7 8 500
+RI2 6 9 500
+I1 12 5 400E-6
+V1 12 4 .75
+V2 8 11 .6
+V3 9 11 .6
+D1 5 4 DX
+Rn 3 10 700
+EVOS 10 1 POLY(2) (17,15) (19,15) -.70m 1 1
+ECM 16 15 POLY(2) (0,15) (2,15) 0 .35 .35
+RCM1 16 17 70E3
+RCM2 17 15 10
+CCM 16 17 6.43E-12
+RPS1 18 19 4.5E3
+RPS2 19 15 1
+CPS 18 19 100p
+EPS 18 0 POLY(1) (12,11) 0 1
+E2 15 0 POLY(2) (12,0) (11,0) 0 .5 .5
+GIS 12 11 (12,11) .18m
+E1 13 15 POLY(1) (7,6) 0 7
+R1 13 14 1E+3
+C1 14 15 9.78E-12
+M3 25 23 12 12 P L=2.5E-6 W=11200E-6
+M4 25 24 11 11 N L=2.5E-6 W=5600E-6
+M5 23 23 12 12 P L=2.5E-6 W=1.35E-6
+M6 24 24 11 11 N L=2.5E-6 W=.525E-6
+GM5 23 11 POLY(1) (15,14) 9.644E-8 2.08E-5
+GM6 12 24 POLY(1) (14,15) 7.5E-8 2.08E-5
+CO1 25 23 1.68E-12
+CO2 25 24 1.68E-12
+.ENDS OpAmp6910
+.subckt switchP 1 2 3
+S1 3 2 1 0 Swp
+.model swp vswitch(Ron=1000 Roff=10E6 Von=0.5 Voff=2.2)
+.ends switchP
+.subckt switchN 1 2 3
+S1 3 2 1 0 SwN
+.model swn vswitch(Ron=1000 Roff=10E6 Von=2.2 Voff=0.5)
+.ends switchN
+.SUBCKT inverter 1 4 8 2
+XSN 1 2 4 SWITCHN
+XSP 1 8 2 SWITCHP
+.ENDS inverter
+.SUBCKT nand2in 1 2 4 8 3
+XI4 1 3 5 SWITCHN
+XI3 2 5 4 SWITCHN
+XI2 1 8 3 SWITCHP
+XI1 2 8 3 SWITCHP
+.ENDS nand2in
+.SUBCKT nand3in 1 2 3 4 8 5
+XI6 3 7 4 SWITCHN
+XI5 2 6 7 SWITCHN
+XI4 1 5 6 SWITCHN
+XI3 2 8 5 SWITCHP
+XI2 3 8 5 SWITCHP
+XI1 1 8 5 SWITCHP
+.ENDS nand3in
+.MODEL DX D(IS=1E-14 RS=5)
+.MODEL P PMOS(LEVEL=2 KF=2.5E-26 KP=16E-6 VTO=-.7 LAMBDA=.001 RD=8)
+.MODEL N NMOS(LEVEL=2 KF=3.5E-28 KP=52E-6 VTO= .7 LAMBDA=.001 RD=5)
+.ENDS LTC6910-1
+*
+* OUT AGND VIN V- G0 G1 G2 V+
+.subckt LTC6910-2 OUT AGND IN 27 G0 G1 G2 VPLUS
+R11 24 23 40K
+R12 25 24 20K
+R13 26 25 10K
+R14 OUT 26 10K
+R2 14 IN 10K
+R10 22 IN 10K
+R9 21 IN 10K
+R7 19 IN 10K
+R4 16 IN 10K
+RI27R3 15 IN 10K
+R1 IN 13 10K
+R6 18 IN 10K
+R15 VPLUS AGND 10K
+R16 AGND 27 10K
+RI70 G2A 27 100K
+RI69 G1A 27 100K
+RI68 G0A 27 100K
+XI21 6 27 VPLUS 12 inverter
+XI24 G2A 27 VPLUS 1 inverter
+XI23 G1A 27 VPLUS 2 inverter
+XI22 G0A 27 VPLUS 3 inverter
+XI18 G0A G1A G2A 27 VPLUS 9 nand3in
+XI19 G0A G1A 1 27 VPLUS 4 nand3in
+XI20 3 2 1 27 VPLUS 6 nand3in
+XI17 3 2 27 VPLUS 5 nand2in
+XI16 4 1 27 VPLUS 7 nand2in
+XI15 2 1 27 VPLUS 8 nand2in
+XI14 G1A G2A 27 VPLUS 10 nand2in
+XI13 5 G2A 27 VPLUS 11 nand2in
+C1 OUT 23 1.6PF
+MI63 13 G2A 23 27 N L=2U W=96U AS=432.000P AD=432.000P PS=201.000U PD=201.000U
+MI62 15 G2A 23 27 N L=2U W=96U AS=432.000P AD=432.000P PS=201.000U PD=201.000U
+MI61 16 G2A 23 27 N L=2U W=96U AS=432.000P AD=432.000P PS=201.000U PD=201.000U
+MI60 19 7 23 27 N L=2U W=96U AS=432.000P AD=432.000P PS=201.000U PD=201.000U
+MI59 21 8 23 27 N L=2U W=96U AS=432.000P AD=432.000P PS=201.000U PD=201.000U
+MI58 22 6 23 27 N L=2U W=96U AS=432.000P AD=432.000P PS=201.000U PD=201.000U
+MI57 14 G2A 23 27 N L=2U W=96U AS=432.000P AD=432.000P PS=201.000U PD=201.000U
+MI56 18 7 23 27 N L=2U W=96U AS=432.000P AD=432.000P PS=201.000U PD=201.000U
+MI55 25 10 23 27 N L=2U W=48U AS=216.000P AD=216.000P PS=105.000U PD=105.000U
+MI54 26 11 23 27 N L=2U W=96U AS=432.000P AD=432.000P PS=201.000U PD=201.000U
+MI53 OUT 12 23 27 N L=2U W=96U AS=432.000P AD=432.000P PS=201.000U PD=201.000U
+MI52 24 9 23 27 N L=2U W=24U AS=108.000P AD=108.000P PS=57.000U PD=57.000U
+XI64 AGND 23 27 VPLUS OUT OPAMP6910
+XI67 G0 VPLUS G0A SWITCHN
+XI66 G1 VPLUS G1A SWITCHN
+XI65 G2 VPLUS G2A SWITCHN
+*
+.subckt OpAmp6910 1 2 11 12 25
+M1 7 3 5 5 P L=2E-6 W=1312E-6
+M2 6 2 5 5 P L=2E-6 W=1312E-6
+RI1 7 8 500
+RI2 6 9 500
+I1 12 5 400E-6
+V1 12 4 .75
+V2 8 11 .6
+V3 9 11 .6
+D1 5 4 DX
+Rn 3 10 700
+EVOS 10 1 POLY(2) (17,15) (19,15) -.70m 1 1
+ECM 16 15 POLY(2) (0,15) (2,15) 0 .35 .35
+RCM1 16 17 70E3
+RCM2 17 15 10
+CCM 16 17 6.43E-12
+RPS1 18 19 4.5E3
+RPS2 19 15 1
+CPS 18 19 100p
+EPS 18 0 POLY(1) (12,11) 0 1
+E2 15 0 POLY(2) (12,0) (11,0) 0 .5 .5
+GIS 12 11 (12,11) .18m
+E1 13 15 POLY(1) (7,6) 0 7
+R1 13 14 1E+3
+C1 14 15 9.78E-12
+M3 25 23 12 12 P L=2.5E-6 W=11200E-6
+M4 25 24 11 11 N L=2.5E-6 W=5600E-6
+M5 23 23 12 12 P L=2.5E-6 W=1.35E-6
+M6 24 24 11 11 N L=2.5E-6 W=.525E-6
+GM5 23 11 POLY(1) (15,14) 9.644E-8 2.08E-5
+GM6 12 24 POLY(1) (14,15) 7.5E-8 2.08E-5
+CO1 25 23 1.68E-12
+CO2 25 24 1.68E-12
+.ENDS OpAmp6910
+.subckt switchP 1 2 3
+S1 3 2 1 0 Swp
+.model swp vswitch(Ron=1000 Roff=10E6 Von=0.5 Voff=2.2)
+.ends switchP
+.subckt switchN 1 2 3
+S1 3 2 1 0 SwN
+.model swn vswitch(Ron=1000 Roff=10E6 Von=2.2 Voff=0.5)
+.ends switchN
+.SUBCKT inverter 1 4 8 2
+XSN 1 2 4 SWITCHN
+XSP 1 8 2 SWITCHP
+.ENDS inverter
+.SUBCKT nand2in 1 2 4 8 3
+XI4 1 3 5 SWITCHN
+XI3 2 5 4 SWITCHN
+XI2 1 8 3 SWITCHP
+XI1 2 8 3 SWITCHP
+.ENDS nand2in
+.SUBCKT nand3in 1 2 3 4 8 5
+XI6 3 7 4 SWITCHN
+XI5 2 6 7 SWITCHN
+XI4 1 5 6 SWITCHN
+XI3 2 8 5 SWITCHP
+XI2 3 8 5 SWITCHP
+XI1 1 8 5 SWITCHP
+.ENDS nand3in
+.MODEL DX D(IS=1E-14 RS=5)
+.MODEL P PMOS(LEVEL=2 KF=2.5E-26 KP=16E-6 VTO=-.7 LAMBDA=.001 RD=8)
+.MODEL N NMOS(LEVEL=2 KF=3.5E-28 KP=52E-6 VTO= .7 LAMBDA=.001 RD=5)
+.ENDS LTC6910-2
+*
+* OUT AGND VIN V- G0 G1 G2 V+
+.subckt LTC6910-3 OUT AGND IN 27 G0 G1 G2 VPLUS
+R2 14 IN 10K
+R9 21 IN 10K
+R7 19 IN 10K
+R4 16 IN 10K
+RI27R3 15 IN 10K
+R1 IN 13 10K
+R6 18 IN 10K
+R14 OUT 26 10K
+R15 VPLUS AGND 10K
+R16 AGND 27 10K
+RI70 27 G2A 100K
+RI69 G1A 27 100K
+RI68 G0A 27 100K
+XI24 G2A 27 VPLUS 1 inverter
+XI23 G1A 27 VPLUS 2 inverter
+XI21 N_1 27 VPLUS 12 inverter
+XI22 G0A 27 VPLUS 3 inverter
+XI20 3 2 1 27 VPLUS N_1 nand3in
+C1 OUT 23 1.6PF
+XI52 N_2 27 27 VPLUS 11 nand2in
+XI63 27 27 27 VPLUS N_2 nand2in
+MI62 18 G1A 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI61 19 G1A 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI60 21 G0A 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI59 26 11 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI58 OUT 12 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI57 13 G2A 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI56 14 G2A 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI55 15 G2A 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI54 16 G2A 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+XI64 AGND 23 27 VPLUS OUT OPAMP6910
+XI67 G2 VPLUS G2A SWITCHN
+XI66 G1 VPLUS G1A SWITCHN
+XI65 G0 VPLUS G0A SWITCHN
+*
+.subckt OpAmp6910 1 2 11 12 25
+M1 7 3 5 5 P L=2E-6 W=1312E-6
+M2 6 2 5 5 P L=2E-6 W=1312E-6
+RI1 7 8 500
+RI2 6 9 500
+I1 12 5 400E-6
+V1 12 4 .75
+V2 8 11 .6
+V3 9 11 .6
+D1 5 4 DX
+Rn 3 10 700
+EVOS 10 1 POLY(2) (17,15) (19,15) -.70m 1 1
+ECM 16 15 POLY(2) (0,15) (2,15) 0 .35 .35
+RCM1 16 17 70E3
+RCM2 17 15 10
+CCM 16 17 6.43E-12
+RPS1 18 19 4.5E3
+RPS2 19 15 1
+CPS 18 19 100p
+EPS 18 0 POLY(1) (12,11) 0 1
+E2 15 0 POLY(2) (12,0) (11,0) 0 .5 .5
+GIS 12 11 (12,11) .18m
+E1 13 15 POLY(1) (7,6) 0 7
+R1 13 14 1E+3
+C1 14 15 9.78E-12
+M3 25 23 12 12 P L=2.5E-6 W=11200E-6
+M4 25 24 11 11 N L=2.5E-6 W=5600E-6
+M5 23 23 12 12 P L=2.5E-6 W=1.35E-6
+M6 24 24 11 11 N L=2.5E-6 W=.525E-6
+GM5 23 11 POLY(1) (15,14) 9.644E-8 2.08E-5
+GM6 12 24 POLY(1) (14,15) 7.5E-8 2.08E-5
+CO1 25 23 1.68E-12
+CO2 25 24 1.68E-12
+.ENDS OpAmp6910
+.subckt switchP 1 2 3
+S1 3 2 1 0 Swp
+.model swp vswitch(Ron=1000 Roff=10E6 Von=0.5 Voff=2.2)
+.ends switchP
+.subckt switchN 1 2 3
+S1 3 2 1 0 SwN
+.model swn vswitch(Ron=1000 Roff=10E6 Von=2.2 Voff=0.5)
+.ends switchN
+.SUBCKT inverter 1 4 8 2
+XSN 1 2 4 SWITCHN
+XSP 1 8 2 SWITCHP
+.ENDS inverter
+.SUBCKT nand2in 1 2 4 8 3
+XI4 1 3 5 SWITCHN
+XI3 2 5 4 SWITCHN
+XI2 1 8 3 SWITCHP
+XI1 2 8 3 SWITCHP
+.ENDS nand2in
+.SUBCKT nand3in 1 2 3 4 8 5
+XI6 3 7 4 SWITCHN
+XI5 2 6 7 SWITCHN
+XI4 1 5 6 SWITCHN
+XI3 2 8 5 SWITCHP
+XI2 3 8 5 SWITCHP
+XI1 1 8 5 SWITCHP
+.ENDS nand3in
+.MODEL DX D(IS=1E-14 RS=5)
+.MODEL P PMOS(LEVEL=2 KF=2.5E-26 KP=16E-6 VTO=-.7 LAMBDA=.001 RD=8)
+.MODEL N NMOS(LEVEL=2 KF=3.5E-28 KP=52E-6 VTO= .7 LAMBDA=.001 RD=5)
+.ENDS LTC6910-3
+*
+* INA AGND INB G0 G1 G2 V+ OUTB V- OUTA
+.subckt LTC6911-1 INA AGND INB G0 G1 G2 VPLUS OUTB 27 OUTA
+R10 22 INA 10K
+R2 14 INA 10K
+R9 21 INA 10K
+R8 20 INA 10K
+R7 19 INA 10K
+R5 17 INA 10K
+R4 16 INA 10K
+R3 15 INA 10K
+R1 INA 13 10K
+R6 18 INA 10K
+RI87B 22B INB 10K
+RI86B 14B INB 10K
+RI85B 21B INB 10K
+RI84B 20B INB 10K
+RI83B 19B INB 10K
+RI82B 17B INB 10K
+RI81B 16B INB 10K
+RI80B 15B INB 10K
+RI79B INB 13B 10K
+RI78B 18B INB 10K
+R11 24 23 50K
+R12 25 24 30K
+R13 26 25 10K
+R14 OUTA 26 10K
+R15 VPLUS AGND 10K
+R16 AGND 27 10K
+R11B 24B N_1 50K
+R12B 25B 24B 30K
+R13B 26B 25B 10K
+R14B OUTB 26B 10K
+R15B VPLUS AGND 10K
+R16B AGND 27 10K
+RI94 G0A 27 100K
+RI93 G1A 27 100K
+RI92 G2A 27 100K
+XI21 6 27 VPLUS 12 inverter
+XI24 G2A 27 VPLUS 1 inverter
+XI23 G1A 27 VPLUS 2 inverter
+XI22 G0A 27 VPLUS 3 inverter
+XI20 3 2 1 27 VPLUS 6 nand3in
+XI18 G0A G1A G2A 27 VPLUS 9 nand3in
+XI19 G0A G1A 1 27 VPLUS 4 nand3in
+XI17 3 2 27 VPLUS 5 nand2in
+XI16 4 1 27 VPLUS 7 nand2in
+XI15 2 1 27 VPLUS 8 nand2in
+XI14 G1A G2A 27 VPLUS 10 nand2in
+XI13 5 G2A 27 VPLUS 11 nand2in
+C1 OUTA 23 1.6PF
+CI88 OUTB N_1 1.6PF
+XI53 AGND 23 27 VPLUS OUTA OPAMP6910
+XI54B AGND N_1 27 VPLUS OUTB OPAMP6910
+MI55 22 6 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI54 13 G2A 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI63 14 G2A 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI62 15 G2A 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI61 16 G2A 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI60 17 G2A 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI59 18 7 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI58 19 7 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI57 20 7 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI56 21 8 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI77B 22B 6 N_1 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI76B 13B G2A N_1 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI75B 14B G2A N_1 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI74B 15B G2A N_1 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI73B 16B G2A N_1 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI72B 17B G2A N_1 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI71B 18B 7 N_1 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI70B 19B 7 N_1 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI69B 20B 7 N_1 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI68B 21B 8 N_1 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI67 24 9 23 27 N L=2U W=24U AS=108P AD=108P PS=57U PD=57U
+MI66 25 10 23 27 N L=2U W=48U AS=216P AD=216P PS=105U PD=105U
+MI65 26 11 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI64 OUTA 12 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI67B 24B 9 N_1 27 N L=2U W=24U AS=108P AD=108P PS=57U PD=57U
+MI66B 25B 10 N_1 27 N L=2U W=48U AS=216P AD=216P PS=105U PD=105U
+MI65B 26B 11 N_1 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI64B OUTB 12 N_1 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+XI91 G0 VPLUS G0A SWITCHN
+XI90 G1 VPLUS G1A SWITCHN
+XI89 G2 VPLUS G2A SWITCHN
+*
+.subckt OpAmp6910 1 2 11 12 25
+M1 7 3 5 5 P L=2E-6 W=1312E-6
+M2 6 2 5 5 P L=2E-6 W=1312E-6
+RI1 7 8 500
+RI2 6 9 500
+I1 12 5 400E-6
+V1 12 4 .75
+V2 8 11 .6
+V3 9 11 .6
+D1 5 4 DX
+Rn 3 10 700
+EVOS 10 1 POLY(2) (17,15) (19,15) -.70m 1 1
+ECM 16 15 POLY(2) (0,15) (2,15) 0 .35 .35
+RCM1 16 17 70E3
+RCM2 17 15 10
+CCM 16 17 6.43E-12
+RPS1 18 19 4.5E3
+RPS2 19 15 1
+CPS 18 19 100p
+EPS 18 0 POLY(1) (12,11) 0 1
+E2 15 0 POLY(2) (12,0) (11,0) 0 .5 .5
+GIS 12 11 (12,11) .18m
+E1 13 15 POLY(1) (7,6) 0 7
+R1 13 14 1E+3
+C1 14 15 9.78E-12
+M3 25 23 12 12 P L=2.5E-6 W=11200E-6
+M4 25 24 11 11 N L=2.5E-6 W=5600E-6
+M5 23 23 12 12 P L=2.5E-6 W=1.35E-6
+M6 24 24 11 11 N L=2.5E-6 W=.525E-6
+GM5 23 11 POLY(1) (15,14) 9.644E-8 2.08E-5
+GM6 12 24 POLY(1) (14,15) 7.5E-8 2.08E-5
+CO1 25 23 1.68E-12
+CO2 25 24 1.68E-12
+.ENDS OpAmp6910
+.subckt switchP 1 2 3
+S1 3 2 1 0 Swp
+.model swp vswitch(Ron=1000 Roff=10E6 Von=0.5 Voff=2.2)
+.ends switchP
+.subckt switchN 1 2 3
+S1 3 2 1 0 SwN
+.model swn vswitch(Ron=1000 Roff=10E6 Von=2.2 Voff=0.5)
+.ends switchN
+.SUBCKT inverter 1 4 8 2
+XSN 1 2 4 SWITCHN
+XSP 1 8 2 SWITCHP
+.ENDS inverter
+.SUBCKT nand2in 1 2 4 8 3
+XI4 1 3 5 SWITCHN
+XI3 2 5 4 SWITCHN
+XI2 1 8 3 SWITCHP
+XI1 2 8 3 SWITCHP
+.ENDS nand2in
+.SUBCKT nand3in 1 2 3 4 8 5
+XI6 3 7 4 SWITCHN
+XI5 2 6 7 SWITCHN
+XI4 1 5 6 SWITCHN
+XI3 2 8 5 SWITCHP
+XI2 3 8 5 SWITCHP
+XI1 1 8 5 SWITCHP
+.ENDS nand3in
+.MODEL DX D(IS=1E-14 RS=5)
+.MODEL P PMOS(LEVEL=2 KF=2.5E-26 KP=16E-6 VTO=-.7 LAMBDA=.001 RD=8)
+.MODEL N NMOS(LEVEL=2 KF=3.5E-28 KP=52E-6 VTO= .7 LAMBDA=.001 RD=5)
+.ENDS LTC6911-1
+*
+* INA AGND INB G0 G1 G2 V+ OUTB V- OUTA
+.subckt LTC6911-2 INA AGND INB G0 G1 G2 VPLUS OUTB 27 OUTA
+R2 14 INA 10K
+R10 22 INA 10K
+R9 21 INA 10K
+R7 19 INA 10K
+R4 16 INA 10K
+RI27R3 15 INA 10K
+R1 INA 13 10K
+R6 18 INA 10K
+RI79B 14B INB 10K
+RI78B 22B INB 10K
+RI77B 21B INB 10K
+RI76B 19B INB 10K
+RI75B 16B INB 10K
+RI74B 15B INB 10K
+RI73B INB 13B 10K
+RI72B 18B INB 10K
+R15 VPLUS AGND 10K
+R16 AGND 27 10K
+RI84B VPLUS AGND 10K
+RI83B AGND 27 10K
+R11 24 23 40K
+R12 25 24 20K
+R13 26 25 10K
+R14 OUTA 26 10K
+RI92 24B 23B 40K
+RI91 25B 24B 20K
+RI90 26B 25B 10K
+RI89 OUTB 26B 10K
+RI98 27 G0A 100K
+RI97 27 G1A 100K
+RI96 27 G2A 100K
+XI24 G2A 27 VPLUS 1 inverter
+XI23 G1A 27 VPLUS 2 inverter
+XI22 G0A 27 VPLUS 3 inverter
+XI21 6 27 VPLUS 12 inverter
+XI18 G0A G1A G2A 27 VPLUS 9 nand3in
+XI19 G0A G1A 1 27 VPLUS 4 nand3in
+XI20 3 2 1 27 VPLUS 6 nand3in
+XI17 3 2 27 VPLUS 5 nand2in
+XI16 4 1 27 VPLUS 7 nand2in
+XI15 2 1 27 VPLUS 8 nand2in
+XI14 G1A G2A 27 VPLUS 10 nand2in
+XI13 5 G2A 27 VPLUS 11 nand2in
+C1 OUTA 23 1.6PF
+CI82B OUTB 23B 1.6PF
+MI63 13 G2A 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI62 15 G2A 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI61 16 G2A 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI60 19 7 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI59 21 8 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI58 22 6 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI57 14 G2A 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI56 18 7 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI71 13B G2A 23B 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI70 15B G2A 23B 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI69 16B G2A 23B 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI68 19B 7 23B 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI67 21B 8 23B 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI66 22B 6 23B 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI65 14B G2A 23B 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI64 18B 7 23B 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI55 25 10 23 27 N L=2U W=48U AS=216P AD=216P PS=105U PD=105U
+MI54 26 11 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI53 OUTA 12 23 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI52 24 9 23 27 N L=2U W=24U AS=108P AD=108P PS=57U PD=57U
+MI88 25B 10 23B 27 N L=2U W=48U AS=216P AD=216P PS=105U PD=105U
+MI87 26B 11 23B 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI86 OUTB 12 23B 27 N L=2U W=96U AS=432P AD=432P PS=201U PD=201U
+MI85 24B 9 23B 27 N L=2U W=24U AS=108P AD=108P PS=57U PD=57U
+XI80 AGND 23 27 VPLUS OUTA OPAMP6910
+XI81B AGND 23B 27 VPLUS OUTB OPAMP6910
+XI95 G0 VPLUS G0A SWITCHN
+XI94 G1 VPLUS G1A SWITCHN
+XI93 G2 VPLUS G2A SWITCHN
+.ENDS LTC6911-2
+*
+.subckt OpAmp6910 1 2 11 12 25
+M1 7 3 5 5 P L=2E-6 W=1312E-6
+M2 6 2 5 5 P L=2E-6 W=1312E-6
+RI1 7 8 500
+RI2 6 9 500
+I1 12 5 400E-6
+V1 12 4 .75
+V2 8 11 .6
+V3 9 11 .6
+D1 5 4 DX
+Rn 3 10 700
+EVOS 10 1 POLY(2) (17,15) (19,15) -.70m 1 1
+ECM 16 15 POLY(2) (0,15) (2,15) 0 .35 .35
+RCM1 16 17 70E3
+RCM2 17 15 10
+CCM 16 17 6.43E-12
+RPS1 18 19 4.5E3
+RPS2 19 15 1
+CPS 18 19 100p
+EPS 18 0 POLY(1) (12,11) 0 1
+E2 15 0 POLY(2) (12,0) (11,0) 0 .5 .5
+GIS 12 11 (12,11) .18m
+E1 13 15 POLY(1) (7,6) 0 7
+R1 13 14 1E+3
+C1 14 15 9.78E-12
+M3 25 23 12 12 P L=2.5E-6 W=11200E-6
+M4 25 24 11 11 N L=2.5E-6 W=5600E-6
+M5 23 23 12 12 P L=2.5E-6 W=1.35E-6
+M6 24 24 11 11 N L=2.5E-6 W=.525E-6
+GM5 23 11 POLY(1) (15,14) 9.644E-8 2.08E-5
+GM6 12 24 POLY(1) (14,15) 7.5E-8 2.08E-5
+CO1 25 23 1.68E-12
+CO2 25 24 1.68E-12
+.ENDS OpAmp6910
+.subckt switchP 1 2 3
+S1 3 2 1 0 Swp
+.model swp vswitch(Ron=1000 Roff=10E6 Von=0.5 Voff=2.2)
+.ends switchP
+.subckt switchN 1 2 3
+S1 3 2 1 0 SwN
+.model swn vswitch(Ron=1000 Roff=10E6 Von=2.2 Voff=0.5)
+.ends switchN
+.SUBCKT inverter 1 4 8 2
+XSN 1 2 4 SWITCHN
+XSP 1 8 2 SWITCHP
+.ENDS inverter
+.SUBCKT nand2in 1 2 4 8 3
+XI4 1 3 5 SWITCHN
+XI3 2 5 4 SWITCHN
+XI2 1 8 3 SWITCHP
+XI1 2 8 3 SWITCHP
+.ENDS nand2in
+.SUBCKT nand3in 1 2 3 4 8 5
+XI6 3 7 4 SWITCHN
+XI5 2 6 7 SWITCHN
+XI4 1 5 6 SWITCHN
+XI3 2 8 5 SWITCHP
+XI2 3 8 5 SWITCHP
+XI1 1 8 5 SWITCHP
+.ENDS nand3in
+.MODEL DX D(IS=1E-14 RS=5)
+.MODEL P PMOS(LEVEL=2 KF=2.5E-26 KP=16E-6 VTO=-.7 LAMBDA=.001 RD=8)
+.MODEL N NMOS(LEVEL=2 KF=3.5E-28 KP=52E-6 VTO= .7 LAMBDA=.001 RD=5)

@@ -1,0 +1,41 @@
+Version 4
+SymbolType CELL
+RECTANGLE Normal -160 -208 160 192
+TEXT 0 0 Center 0 LT
+WINDOW 0 0 -96 Center 0
+WINDOW 3 0 96 Center 0
+SYMATTR Value LTC3700
+SYMATTR Prefix X
+SYMATTR SpiceModel LTC3700.sub
+SYMATTR Value2 LTC3700
+SYMATTR Description Constant Frequency Step-Down DC/DC Controller with LDO Regulator
+PIN -160 144 LEFT 8
+PINATTR PinName Ith/Run
+PINATTR SpiceOrder 10
+PIN 0 192 BOTTOM 8
+PINATTR PinName GND
+PINATTR SpiceOrder 5
+PIN -160 48 LEFT 8
+PINATTR PinName FB
+PINATTR SpiceOrder 9
+PIN -160 -144 LEFT 8
+PINATTR PinName Sense-
+PINATTR SpiceOrder 8
+PIN -80 -208 TOP 8
+PINATTR PinName Vin
+PINATTR SpiceOrder 7
+PIN -160 -48 LEFT 8
+PINATTR PinName Pgate
+PINATTR SpiceOrder 6
+PIN 80 -208 TOP 8
+PINATTR PinName Vin2
+PINATTR SpiceOrder 1
+PIN 160 -144 RIGHT 8
+PINATTR PinName LDO
+PINATTR SpiceOrder 2
+PIN 160 0 RIGHT 8
+PINATTR PinName FB2
+PINATTR SpiceOrder 3
+PIN 160 144 RIGHT 8
+PINATTR PinName Pgood
+PINATTR SpiceOrder 4

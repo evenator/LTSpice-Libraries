@@ -1,0 +1,32 @@
+Version 4
+SymbolType CELL
+RECTANGLE Normal -160 -144 160 144
+TEXT 0 0 Center 0 LT
+WINDOW 0 0 -80 Center 0
+WINDOW 3 0 80 Center 0
+SYMATTR Value LT1424-9
+SYMATTR Prefix X
+SYMATTR SpiceModel LT1424-9.sub
+SYMATTR Value2 LT1424-9
+SYMATTR Description Isolated Flyback Switching Regulator with 9V Output
+PIN -160 -48 LEFT 8
+PINATTR PinName _SHDN
+PINATTR SpiceOrder 1
+PIN -160 48 LEFT 8
+PINATTR PinName Vc
+PINATTR SpiceOrder 2
+PIN -96 144 BOTTOM 8
+PINATTR PinName SGND
+PINATTR SpiceOrder 4
+PIN 96 144 BOTTOM 8
+PINATTR PinName PGND
+PINATTR SpiceOrder 5
+PIN 160 -48 RIGHT 8
+PINATTR PinName SW
+PINATTR SpiceOrder 6
+PIN 0 -144 TOP 8
+PINATTR PinName Vin
+PINATTR SpiceOrder 7
+PIN 160 48 RIGHT 8
+PINATTR PinName Rccomp
+PINATTR SpiceOrder 8

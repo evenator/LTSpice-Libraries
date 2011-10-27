@@ -1,0 +1,35 @@
+Version 4
+SymbolType CELL
+RECTANGLE Normal -144 -144 144 144
+TEXT 0 0 Center 0 LT
+WINDOW 0 0 -64 Center 0
+WINDOW 3 0 64 Center 0
+SYMATTR Value LT8410
+SYMATTR Prefix X
+SYMATTR SpiceModel LT8410.sub
+SYMATTR Value2 LT8410
+SYMATTR Description Ultralow Power Boost Converter with Output Disconnect
+PIN -144 80 LEFT 8
+PINATTR PinName _SHDN
+PINATTR SpiceOrder 1
+PIN -144 -80 LEFT 8
+PINATTR PinName Vcc
+PINATTR SpiceOrder 2
+PIN 0 144 BOTTOM 8
+PINATTR PinName GND
+PINATTR SpiceOrder 3
+PIN -64 -144 TOP 8
+PINATTR PinName SW
+PINATTR SpiceOrder 4
+PIN 144 -80 RIGHT 8
+PINATTR PinName Vout
+PINATTR SpiceOrder 5
+PIN 64 -144 TOP 8
+PINATTR PinName CAP
+PINATTR SpiceOrder 6
+PIN 144 0 RIGHT 8
+PINATTR PinName Vref
+PINATTR SpiceOrder 7
+PIN 144 80 RIGHT 8
+PINATTR PinName FBP
+PINATTR SpiceOrder 8

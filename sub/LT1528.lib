@@ -1,0 +1,38 @@
+* Copyright © Linear Technology Corp. 2010.  All rights reserved.
+*
+.subckt LT1528 1 2 3 4 5
+Q1 N007 N005 5 0 PN
+Q2 N005 N001 3 0 NA
+Q3 N001 N009 N010 0 NP temp=27
+R2 N009 3 4.7K
+R3 N010 3 500
+R6 2 N009 20.6K
+I1 5 4 37µ load
+G1 5 N001 N003 3 2µ
+R1 5 N005 150K
+R8 N007 1 .1
+A2 N006 0 N001 N001 N001 N001 3 N001 VARISTOR Rclamp=1K
+D3 0 N006 F
+G3 0 N006 1 N007 10m
+Q7 N009 N005 N007 0 P 2m
+C5 1 3 10p
+C7 5 3 10p
+G5 N006 0 N003 3 table(0 4.2m .95 0)
+A1 4 3 3 3 3 3 N003 3 SCHMITT Vt=.975 Vh=1m trise=2m
+D2 4 3 A
+D4 3 4 B
+C6 2 3 10p
+G4 0 N006 5 3 table( 2,0 3,4.2m 10 5.6m)
+C1 N001 N009 1p
+C2 N005 N001 .2p Rser=1K
+C4 5 N001 500p Rser=80Meg Rpar=.27G
+S1 N001 3 3 N003 SD
+.model PN PNP(BF=50 Cje=1n Cjc=1n tf=10n)
+.model NA NPN(BF=450K Re=5)
+.model NP NPN(BF=1500)
+.model F D(Ron=1m Roff=10K)
+.model P PNP(BF=100)
+.model A D(Ron=110 Vfwd=6.6)
+.model B D(Ron=2 Vrev=7.5 Vfwd=.6)
+.model SD SW(Ron=1K Roff=1T Vt=-.5 Vh=-.4)
+.ends LT1528
